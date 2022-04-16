@@ -4,6 +4,6 @@
 - Points
     Part  | Obtained
     ---  | ---
-    - Implementation | 12 / 15
-    - Documentation  | 5 / 5
-    - Presentation   | 4.5 / 5
+    Implementation | 12 / 15
+    Documentation  | 5 / 5
+    Presentation   | 4.5 / 5
