@@ -28,7 +28,7 @@ BAN4 | New Headway Intermediate 2
 ITW  | Web Design
 IVS  | Practical Aspects of Software Desing
 
-# 2BIT - winter semester
+## 2BIT - winter semester
 
 Abrv | Title
 ---  | ---
