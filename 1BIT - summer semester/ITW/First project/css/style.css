@@ -1,0 +1,381 @@
+/*
+ * Soubor: style.css
+ * Datum: 08.03.2021
+ * Autor: David Chocholaty, xchoch09@stud.fit.vutbr.cz
+ * Projekt: Projekt 1, predmet ITW
+ */
+
+* {
+    padding: 0;
+    margin: 0;    
+}
+
+.content {
+    min-width: 728px;        
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: auto;            
+}
+
+#navigation, #header, #about, #middle-sections,
+#steps, #contact, #footer-note {
+    min-width:768px;   
+}  
+
+.content h2, .content h3, #references p {         
+    color: #4d4d4d ;   
+    font-weight: normal; 
+}
+
+h1, h2, h3, a, input {
+    font-family: Montserrat, Arial, sans-serif;    
+}
+
+a, #news-btn, #submit-btn {
+    /* 
+     * Pozvolny prechod pri hover
+     * pro vsechny odkazy a tlacitka.
+     */
+    transition-duration: 0.4s;
+}
+
+.contact-item a, #news a, #steps a {
+    color: steelblue;
+    text-decoration: none;
+}
+
+#nav-logo > div > a {      
+    float: left;           
+    font-weight: bold;
+    text-decoration: none;          
+    font-size: 25px;
+    color: black;
+}
+
+#nav-menu a {
+    text-decoration: none;    
+    color: #bfbfbf;
+}
+
+#nav-menu a:hover, #news a:hover, #steps a:hover {
+    color: black;
+}
+
+#navigation {        
+    padding: 20px 0;      
+}
+
+#navigation > div {
+    display: flex;    
+    align-items: center;    
+    /* Vlozeni mezery mezi logo a menu. */    
+    justify-content: space-between;
+}
+
+#nav-menu {
+    font-size: 13px;
+    letter-spacing: .05em;
+}
+
+#nav-menu ul {        
+    float: right;                                         
+}
+
+#nav-menu  li {            
+    float: left;         
+    list-style-type: none; 
+    text-transform: uppercase;    
+    margin: 0 10px;       
+}
+
+#header > div {    
+    position: relative;            
+}
+
+#header img {    
+    max-width: 100%
+}
+
+#header > div > h1 {           
+    position: absolute;
+    bottom: 20px; 
+    left: 40px;     
+    font-size: 32px;   
+    color: white;                
+    font-weight: normal;     
+}
+
+#about {
+    margin: 40px 0 100px 0;
+}
+
+#about > div > h2 {
+    font-size: 40px;       
+    text-align: center;
+}
+
+.ref-author, p {
+    font-family: Merriweather, Times, serif;      
+    font-size: 14px;
+    line-height: 1.7;
+    color: #898989;    
+}
+
+#about > div > p {
+    text-align: center;        
+}
+
+.about-item > h3 {
+    margin-top: 40px;
+}
+
+.about-item p {
+    color: #bfbfbf;
+}
+
+#about > div > p {
+    font-size: 18.6px;
+    padding: 40px 0;
+}
+
+#about > div > div {
+    column-count: 3;    
+    column-gap: 40px;         
+}
+
+#about img {
+    max-width: 100%;
+}
+
+.about-item > h3 {
+    font-size: 24px;    
+    margin-bottom: 5px;
+}
+
+#middle-sections {        
+    padding: 40px 0 100px 0;   
+    background-color: whitesmoke;        
+}
+
+#middle-sections h2 {
+    font-size: 32px;
+} 
+
+#middle-sections h3 {
+    font-size: 24px;
+} 
+
+#middle-sections > div {      
+    /* Rozdeleni middle-sections na 2 sloupce. */
+    display: flex;
+    flex-direction: row;    
+}
+
+#news {    
+    width: 60%;  
+    padding: 20px 20px 20px 0;
+}
+
+#news > h2 {
+    padding-bottom: 20px;
+}
+
+.news-item {
+    border-bottom: 1px solid #e3e3e3;    
+    margin: 20px 20px 20px 0;
+}
+
+#news-btn {
+    background-color: lightsteelblue;        
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    width: 140px;
+    height: 40px;        
+}
+
+#news-btn > a {
+    padding: 12px 17.25px;    
+}
+
+#news-btn > a:hover {
+    background: #bfbfbf;   
+    color: #4d4d4d;  
+}
+
+.news-item * {
+    margin: 20px 0;
+}
+
+.news-date, .ref-author, #footer-note {
+    color: #bfbfbf;
+}
+
+.news-date {
+    font-size: 12px;
+    text-transform: uppercase;               
+}
+
+.news-item h3{
+    margin: 0;
+    padding-top: 10px;
+}
+
+#references {    
+    width: 40%;  
+    padding: 20px 0;
+}
+
+#references > img {
+    border-radius: 50%;
+    width: 120px;           
+    float: left; 
+    clear:left;
+    margin: 45px 20px 0 0;
+}
+
+#references p {        
+    margin: 45px 40px 20px 0px;    
+    font-size: 18px;
+    font-style: italic;    
+}
+
+#references span {       
+    font-size: 14px;    
+    font-style: italic;    
+}
+
+#steps h3 {
+    font-size: 14px;
+    text-transform: uppercase;     
+}
+
+.steps-more {
+    font-size: 11px;
+    text-transform: uppercase;     
+}
+
+#steps > div {      
+    padding: 40px 20px 100px 20px;       
+    column-count: 3;
+    column-gap: 40px;    
+}
+
+.steps-item {         
+    overflow: hidden;
+}
+
+/*
+ * Vyber vsech ikon Font Awesome.
+ */
+.fas {    
+    font-size: 60px;      
+    color: lightsteelblue;       
+    float: left;    
+}
+
+.steps-item:first-of-type > i {    
+    padding-right: 7.5px;
+}
+
+.steps-item > h3, .steps-item > p {   
+    /* 
+     * Overflow:hidden zrusi obtekani textu
+     * pri pouziti float:left pro .fas.
+     */ 
+    overflow: hidden;
+    padding: 10px 20px;       
+}
+
+.steps-item > h3, .steps-more {
+    font-weight: bold;     
+}
+
+.steps-item > span {
+    position: relative;       
+    left: 95px;
+}
+
+#contact {     
+    background-color: #262626;          
+}
+
+#contact > div {
+    padding: 40px 20px 100px 20px;      
+    column-count: 3; 
+    column-gap: 40px;      
+}
+
+#contact h3 {
+    font-size: 24px;
+    color: white;
+}
+
+#contact > div > div {
+    height: 250px;
+}
+
+#contact input {
+    height: 54px;      
+    border-radius: 4px;
+    border: none;
+}
+
+#email-form {    
+    width: 90%;
+    font-size: 18px;        
+}
+
+/* 
+ * Pri zadani nevalidniho emailu
+ * pismo zmeni barvu na red.
+ */
+#email-form:invalid {
+    color: red;
+}
+
+#submit-btn {    
+    width: 70px;    
+    margin-top: 4px;    
+    background: steelblue;
+    color: white;   
+    /* 
+     * Cursor: pointer slouzi
+     * ke zmene kurzoru pri 
+     * najeti mysi na tlacitko.
+     */     
+    cursor: pointer;  
+    display: block;
+}
+
+#submit-btn:hover {
+    background: white;                 
+    color: #4d4d4d;
+}
+
+.contact-item > h3 {
+    margin-bottom: 40px;
+}
+
+.contact-item a:hover {
+    color: white;
+}
+
+.contact-item li {
+    list-style-type: none;
+    text-transform: uppercase;   
+    margin-bottom: 10px;
+}
+
+#news-btn, #submit-btn {
+    font-size: 13px;
+    letter-spacing: .15em;
+    text-transform: uppercase;     
+    font-weight: bold;
+}
+
+#footer-note {
+    padding: 20px 0;
+    background-color: #1a1a1a;
+    font-size: 12px;
+}

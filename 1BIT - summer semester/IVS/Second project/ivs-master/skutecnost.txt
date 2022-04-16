@@ -1,0 +1,13 @@
+Soubor obsahuje rozdíl mezi plánem projektu a skutečností.
+
+Struktura plánu byla dobře navrhnutá. Z počátku práce bylo bez problémů dodržet stanovené termíny.
+V průběhu práce se však vyskytlo pár problémů a úprav, které bylo nutné řešit, a tudíž tím vzniklo menší zpoždění.
+
+Jednalo se o následující části projektu:
+
+- GUI
+- instalátor
+- Makefile
+
+Plán byl však vytvořen s rezervou díky uvědomění si, že při vývoji produktu mohou vzniknout komplikace.
+Tato rezerva se ke konci vývoje produktu ukázala za velmi vhodný krok při plánování.

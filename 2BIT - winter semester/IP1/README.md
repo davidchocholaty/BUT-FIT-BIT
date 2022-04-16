@@ -1,0 +1,27 @@
+# Tone Mapping Operators
+### Tone Mapping Operators implemented for Tone Mapping Studio
+
+Tone Mapping Studio: https://github.com/cadik/TMS
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+#### Local Laplacian Filters: Edge-aware Image Processing with a Laplacian Pyramid
+- Authors: Sylvain Paris, Samuel W. Hasinoff, Jan Kautz
+- Conference: SIGGRAPH 2011
+- Plugin: TMOParis11
+
+Article: https://people.csail.mit.edu/sparis/publi/2011/siggraph/
+
+Implemented operator: https://github.com/cadik/TMS/tree/master/TMOParis11
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+#### Adaptive Logarithmic Mapping For Displaying High Contrast Scenes
+- Authors: F. Drago, K. Myszkowski, T. Annen, N. Chiba
+- Conference: EUROGRAPHICS 2003
+- Plugin: TMODrago03
+
+Article: https://resources.mpi-inf.mpg.de/tmo/logmap/logmap.pdf
+
+Implemented operator: https://github.com/cadik/TMS/tree/master/TMODrago03
+

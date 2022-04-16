@@ -1,0 +1,71 @@
+/*
+ * Soubor: books.css
+ * Popis: Stylovy predpis pro sekci Books webove stranky.
+ * Datum: 2021-04-02
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+
+ /*
+ * Obrazek knih na pozadi.
+ */
+ .books {                                             
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("../images/books.jpg");        
+    background-color: #1a1a1a;    
+    background-attachment: fixed;
+    width: 100%;    
+    background-position: top;    
+    background-repeat: no-repeat;
+    background-size: cover;    
+    color: #f0f0f0;    
+    text-align: center;  
+    font-size: 1.1rem;           
+    padding: 16vh 6vw;    
+ } 
+ 
+ .books > * {
+     padding: 20px 0;
+ }  
+ 
+ .books h2 {
+     font-size: 1.8rem;    
+     padding: 25px 0;       
+ }     
+
+ /*
+  * Nastaveni velikosti a rotace ikony knihy.
+  */
+ .books i {
+     font-size: 5rem;
+     top: 50%;
+     left: 50%;
+     transform: rotate(45deg);        
+ }
+
+ .books > ul {
+     list-style-type: none;
+ }
+
+ .books li {     
+     font-size: 1.5rem;
+     padding: 20px;
+     animation-duration: 3s;       
+ }
+
+ #books-title {
+    animation-duration: 1.5s;        
+ } 
+
+/*----------------- Books pro desktop ------------------*/
+
+@media all and (min-width: 1140px) {    
+   /*
+    * Zmena velikosti okraju.
+    */
+   .books {
+       padding: 16vh 18vw;
+   }      
+}
+
+/*------------- Konec souboru books.css -------------*/

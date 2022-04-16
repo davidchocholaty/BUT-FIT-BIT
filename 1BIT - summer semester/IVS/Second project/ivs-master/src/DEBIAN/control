@@ -1,0 +1,12 @@
+Source: kalkulator
+Section: math
+Version: 1.0
+Priority: optional
+Maintainer: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 4.5.0
+Package: kalkulator
+Architecture: amd64
+Depends: libc6
+Description: Zakladni kalkulator pro Linux
+ VUT FIT IVS Projekt 2

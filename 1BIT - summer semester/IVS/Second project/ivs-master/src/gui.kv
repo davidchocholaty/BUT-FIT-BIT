@@ -1,0 +1,387 @@
+## @file      main.py
+#  @brief     Soubor main s nadstavbou pro gui
+#  @author    Adam Kankovsky <xkanko00@stud.fit.vutbr.cz>
+#  @version   1.0
+#  @date      2021-05-25
+#  @copyright GNU Public License
+
+<MyGrid>:
+    calcimput:imp
+    resultlabel:result
+    BoxLayout:
+        orientation:'vertical'
+        MDToolbar:
+            title:'KALKULATOR'
+            md_bg_color:0.2,0.2,0.2,1
+            specific_text_color:0,.6,.8,1
+            right_action_items:[["help",lambda x: root.help()]]
+            elevation:0
+        GridLayout:
+            padding:30
+            cols:1
+            size_hint_y:'2dp'
+            MDTextFieldRound:
+                id:imp
+                bold:True
+                size_hint_y:1
+                foreground_color:0,0.7,0.8,1
+                normal_color:0,0,0,1
+                line_color: 0,0.7,0.8,1
+                halign:"right"
+                font_size:40
+            MDLabel:
+                text:"result"
+                id:result
+                bold:True
+                height: "65dp"
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+                halign:"right"
+                font_size:25
+                size_hint_y:None
+
+        GridLayout:
+            padding:5
+            spacing:5
+            cols:5
+            MDFillRoundFlatButton:
+                text:"Del"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:0.6,0,0,1
+                valid_set:
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text = root.calcimput.text[:-1]
+            MDFillRoundFlatButton:
+                text:"C"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:0.6,0,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text = ''
+                    root.resultlabel.text = 'result'
+            MDFillRoundFlatButton:
+                text:"Ans"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:0.2,0.8,0.2,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text += root.resultlabel.text
+            MDFillRoundFlatButton:
+                text:"+"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='+'
+            MDFillRoundFlatButton:
+                text:"-"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='-'
+        GridLayout:
+            padding:5
+            spacing:5
+            cols:5
+            MDFillRoundFlatButton:
+                text:"7"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='7'
+            MDFillRoundFlatButton:
+                text:"8"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='8'
+            MDFillRoundFlatButton:
+                text:"9"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='9'
+            MDFillRoundFlatButton:
+                text:"/"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='/'
+            MDFillRoundFlatButton:
+                text:"*"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='*'
+        GridLayout:
+            padding:5
+            spacing:5
+            cols:5
+            MDFillRoundFlatButton:
+                text:"4"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='4'
+            MDFillRoundFlatButton:
+                text:"5"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='5'
+            MDFillRoundFlatButton:
+                text:"6"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='6'
+            MDFillRoundFlatButton:
+                text:"^"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='^'
+            MDFillRoundFlatButton:
+                text:"√"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='√'
+        GridLayout:
+            padding:5
+            spacing:5
+            cols:5
+            MDFillRoundFlatButton:
+                text:"1"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='1'
+            MDFillRoundFlatButton:
+                text:"2"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='2'
+            MDFillRoundFlatButton:
+                text:"3"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='3'
+            MDFillRoundFlatButton:
+                text:"ln"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='ln'
+            MDFillRoundFlatButton:
+                text:"!"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,0.6,0,1
+                font_size:25
+                bold:True
+                text_color:1,1,1,1
+                on_release:
+                    root.calcimput.text+='!'
+        GridLayout:
+            padding:5
+            spacing:5
+            spacing:5
+            cols:3
+            MDFillRoundFlatButton:
+                text:"0"
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='0'
+            MDFillRoundFlatButton:
+                text:"."
+                size_hint_x:1
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calcimput.text+='.'
+            MDFillRoundFlatButton:
+                text:"="
+                size_hint_x:3
+                size_hint_y:1
+                md_bg_color:1,1,1,1
+                font_size:25
+                bold:True
+                text_color:0,0,0,1
+                on_release:
+                    root.calculate()
+<Help>:
+    BoxLayout:
+        orientation:'vertical'
+        MDToolbar:
+            title:'NÁPOVĚDA'
+            md_bg_color:0.2,0.2,0.2,1
+            specific_text_color:0,.6,.8,1
+            right_action_items:[["close",lambda x: root.help()]]
+            elevation:0
+        GridLayout:
+            padding:10
+            cols:1
+            MDLabel:
+                text: "Použití"
+                halign: "center"
+                font_style: 'H3'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Pro použití kalkulačky klikněte na čísla a operátory"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Kalkulačka očekává vstup bez mezer před a za operátorem"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Do kalkulačky můžeme vložit data také pomocí klávesnice"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Kalkulačka počítá pouze počty s jednou operací"
+                halign: "left"
+                bold:True
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Z klávesnice můžeme používat:"
+                halign: "left"
+                font_size: '30dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     čísla:  0   1   2   3   4   5   6   7   8   9"
+                halign: "left"
+                padding_left: 20
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     desetinnou čárku:    ."
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     základní operace: +   -   *   /"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     umazání znaku:  Del/Backspace"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     smazání obsahu kalkulačky:  c"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "     Pro výpočet:  Enter "
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1
+            MDLabel:
+                text: "Pro vkládání je možné využít také tlačítka"
+                halign: "left"
+                font_size: '20dp'
+                theme_text_color:'Custom'
+                text_color:0,0.7,0.8,1

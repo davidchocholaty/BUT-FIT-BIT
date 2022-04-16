@@ -1,0 +1,1 @@
+Z důvodu limitu velikosti odevzdávaného archivu v systému WIS FIT neobsahuje archiv obrázky použité na webu. Kompletní webová verze i s obrázky se nachází na adrese: http://www.stud.fit.vutbr.cz/~xchoch09/

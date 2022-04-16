@@ -1,0 +1,87 @@
+/*
+ * Soubor: animation.css
+ * Popis: Stylovy predpis pro animace webove stranky.
+ * Datum: 2021-04-01
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+
+/*
+ * Animace pohyb zleva.
+ */
+ @keyframes slide-in-left {
+   0% {
+     transform: translateX(-100px);      
+     opacity: 0;
+   }
+
+   100% {      
+     transform: translateX(0);
+     opacity: 1;
+   }
+  }
+  
+  /*
+   * Animace pohyb zprava.
+   */
+  @keyframes slide-in-right {
+    0% {            
+      transform: translateX(100px);      
+      opacity: 0;
+    }
+
+    100% {      
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /*
+   * Animace zespodu.
+   */
+  @keyframes fade-in-bottom {
+    0% {      
+      transform: translateY(50px);
+      opacity: 0;
+    }
+
+    100% {      
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /*
+   * Animace bez pohybu.
+   */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+/*
+ * Animace pro sipky znazornujici scroll.
+ */
+@keyframes animate-arrow {
+  0%{
+      opacity: 0;
+      transform: rotate(45deg) translate(-20px,-20px);
+  }
+
+  50%{
+      opacity: 1;
+  }
+
+  100%{
+      opacity: 0;
+      transform: rotate(45deg) translate(20px,20px);
+  }
+}
+  
+  /*----------- Konec souboru animation.css -----------*/

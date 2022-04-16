@@ -1,0 +1,104 @@
+/*
+ * Soubor: education.css
+ * Popis: Stylovy predpis pro sekci Education webove stranky.
+ * Datum: 2021-04-01
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+
+/*
+ * Nastaveni sekce education na flex.
+ */  
+ .education {               
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.1rem;            
+    padding: 16vh 6vw;     
+    background-color: #f0f0f0;    
+ } 
+ 
+ .education > * {
+     padding: 20px 0;
+ }
+ 
+ /*
+  * Nastaveni efektu stinu a zaobleni rohu obrazku.
+  */
+ .education img {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                0 12.5px 10px rgba(0, 0, 0, 0.06),
+                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+                0 100px 80px rgba(0, 0, 0, 0.12);
+    border-radius: 2.5px;
+ }
+ 
+ .education h2 {
+     font-size: 1.8rem;    
+     padding: 25px 0;    
+ }  
+
+ .education h3 {
+     padding: 10px 0;
+ }
+
+ .edu-item {
+    padding: 25px 0;
+ }
+ 
+ .education img,  .education p{  
+     width: 100%;
+ }
+ 
+ #edu-fst-col {
+    animation-duration: 1.5s;
+ }
+
+ /*
+  * Zarovnani nadpisu a odstavce pod sebe
+  * pro mobilni zarizeni.
+  */
+ #edu-sec-col {
+     display: flex;
+     flex-direction: column;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items:center;
+     animation-duration: 3s;
+ }
+  
+ /*--------------- Education pro desktop --------------*/
+ 
+ @media all and (min-width: 1140px) {    
+     /*
+      * Zarovnani nadpisu na stejnou uroven jako odstavec.
+      */
+     #edu-sec-col {
+         align-items: flex-start;
+     }
+ 
+     /*
+      * Zmena sirky okraju pro desktop.
+      */
+     .education {
+         padding-left: 16vw;     
+         padding-right: 16vw;     
+     }
+ 
+     /*
+      * Zarovnani na dva sloupce.
+      */
+     .education .column {
+         flex-direction: column;
+         flex-basis: 100%;        
+         flex: 1;     
+         padding: 0 2vw;   
+     }        
+ }
+
+/*----------- Konec souboru education.css -----------*/

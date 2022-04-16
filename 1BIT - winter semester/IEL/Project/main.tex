@@ -1,0 +1,1820 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\usepackage[left=2cm,text={17cm, 24cm}, top=3cm]{geometry}
+\usepackage{amsmath} 
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage[european,straightvoltages,betterproportions,EFvoltages]{circuitikz}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}, group-minimum-digits=4}
+\def\doubleunderline#1{\underline{\underline{#1}}}
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\begin{document}
+
+    %Titulni strana
+    \begin{titlepage}
+        \begin{center}
+            \includegraphics[width=0.87\textwidth]{images/logo_cz.png}
+            \vspace*{6cm}
+
+            \Large
+            \textbf{ELEKTRONIKA PRO INFORMAČNÍ TECHNOLOGIE}    
+            
+            \vspace{0.5cm}
+            \Large
+            \textbf{2020/2021}
+            
+            \vspace{2cm}
+            
+            \Large
+            \textbf{Semestrální projekt}
+            
+           \vfill
+		   \begin{flushleft} 
+		   \large
+		   David Chocholatý (xchoch09)
+		   \hfill
+		   Brno, \today
+		   \end{flushleft}
+            
+        \end{center}
+    \end{titlepage}
+
+\pagestyle{fancy}
+\lhead{\bfseries IEL projekt 2020/2021}
+\rhead{\bfseries Obsah}
+
+\newpage
+\tableofcontents
+\newpage
+
+%Priklad 1
+\rhead{\bfseries Příklad 1}
+\section{Příklad 1 -- Metoda postupného zjednodušování obvodu}
+\textbf{Zadání:} Stanovte napětí $U_{R_6}$ a proud $I_{R_6}$. Použijte metodu postupného zjednodušování obvodu.
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} 
+      \hline
+      %prvni radek
+       sk. & $U_1$ [\si{\volt}] & $U_2$ [\si{\volt}] & $R_1$ [\si{\ohm}] & $R_2$ [\si{\ohm}]
+       & $R_3$ [\si{\ohm}] & $R_4$ [\si{\ohm}] & $R_5$ [\si{\ohm}]
+       & $R_6$ [\si{\ohm}] & $R_7$ [\si{\ohm}] & $R_8$ [\si{\ohm}]\\
+       %druhy radek
+       \hline
+       H & 135 & 80 & 680 & 600 & 260 & 310 & 575 & 870 & 355 & 265 \\
+     \hline
+    \end{tabular}
+    \caption{Zadané hodnoty}
+    \label{tab:1}
+  \end{center}
+ \end{table}
+
+%obvod 1
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_2$] ++(0,2)%zdroj U2
+    to[dcvsource, v^<=$U_1$] ++(0,2)%zdroj U1
+    to[short, -*] (1,4)
+    to[R=$R_1$, -*] (4,4) -- (7,4)
+    to[R=$R_7$, -*] (7,2) -- (7,0)
+    (7,0) -- (5,0)
+    to[R=$R_8$] (0,0);
+    
+    \draw
+    (1,4) to[R=$R_2$, -*] (1,2)
+    to[R=$R_3$] (4,2)
+    to [R=$R_6$, v>=$U_{R_6}$, i>^=$I_{R_6}$] (7,2);
+    
+    \draw
+    (1,2)--(1,1) to[R=$R_4$] (4,1)
+    to[short, -*] (4,2);
+    
+    \draw
+    (4,4) to[R=$R_5$, -*] (4,2);
+     
+\end{circuitikz}
+\caption{Zadaný obvod}
+\end{center}
+\end{figure}
+
+\subsection{Zjednodušení obvodu}
+Jako první krok při zjednodušování zadaného obvodu zvolíme nahrazení zdrojů napětí $U_1$ a $U_2$ 
+zapojených \newline v sérii zdrojem napětí $U_V$ dle \rom{2}. Kirchhoffova zákona:
+\[U_1 + U_2 - U_V = 0\] 
+po úpravě: 
+\[U_V = U_1 + U_2 = 135 + 80 = 215V\]
+
+%obvod 2
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short, -*] (1,4)
+    to[R=$R_1$, -*] (4,4) -- (7,4)
+    to[R=$R_7$, -*] (7,2) -- (7,0)
+    (7,0) -- (5,0)
+    to[R=$R_8$] (0,0);
+    
+    \draw
+    (1,4) to[R=$R_2$, -*] (1,2)
+    to[R=$R_3$] (4,2)
+    to [R=$R_6$, v>=$U_{R_6}$, i>^=$I_{R_6}$] (7,2);
+    
+    \draw
+    (1,2)--(1,1) to[R=$R_4$] (4,1)
+    to[short, -*] (4,2);
+    
+    \draw
+    (4,4) to[R=$R_5$, -*] (4,2);
+    
+\end{circuitikz}
+\caption{Nahrazení zdrojů napětí $U_1$ a $U_2$ zdrojem napětí $U_V$}
+\end{center}
+\end{figure}
+\newpage
+
+\noindent
+Dalším krokem ke zjednodušení obvodu je nahradit rezistory $R_3$ a $R_4$ zapojené paralerně rezistorem $R_{34}$ podle vztrahu:
+
+\[R_{34} = \frac{R_3 * R_4}{R_3 + R_4} = \frac{260 * 310}{260 + 310} = \SI{141,403 509}{\ohm}\]
+
+%obvod 3
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short, -*] (1,4)
+    to[R=$R_1$, -*] (4,4)
+    to[R=$R_7$] (7,4)--(7,0)
+    (7,0) -- (5,0)
+    to[R=$R_8$] (0,0);
+    
+    \draw
+    (1,4) to[R=$R_2$] (1,2)
+    to[R=$R_{34}$, -*] (4,2)
+    to [R=$R_6$, -*] (7,2);
+     
+     \draw
+     (4,4) to[R=$R_5$] (4,2);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_3$ a $R_4$ rezistorem $R_{34}$}
+\end{center}
+\end{figure}
+
+\noindent
+Nyní si můžeme povšimnout, že nově vzniklý rezistor $R_{34}$ je zapojený v sérii s rezistorem $R_2$. 
+Nahradíme jej tedy rezistorem $R_{234}$ podle vztahu:
+\[R_{234} = R_2 + R_{34} = 600 + \num{141,403 509} = \SI{741,403 509}{\ohm}\]
+
+%obvod 4
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short, -*] (1,4)
+    to[short] (1,5)
+    to[R=$R_1$, -*] (4,5)
+    to[R=$R_7$] (7,5)--(7,4);
+    
+    \draw
+    (1,4) -- (1,3)
+    to[R=$R_{234}$, -*] (4,3)
+    to [R=$R_6$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$] (0,0);
+     
+     \draw
+     (4,5) to[R=$R_5$] (4,3);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_2$ a $R_{34}$ rezistorem $R_{234}$}
+\end{center}
+\end{figure}
+
+\newpage
+
+Při zjednodušování obvodu dále využijeme transformaci trojúhelník -- hvězda, 
+která danou část obvodu, kterou chceme transformovat, zjednoduší.
+
+V námi dosud zjednodušeném obvodu lze aplikovat transformaci trojuhelník -- hvězda dvěma způsoby, 
+a to pro levou nebo pravou smyčku. Jelikož budeme počítat hodnoty proudu a napětí pro odpor $R_6$, 
+který se nachází v pravé smyčce, aplikujeme transformaci na smyčku levou. 
+Tato volba se nám později projeví tím, že bude jednodušší zpětně dopočítat výsledné hodnoty $U_{R_6}$ a $I_{R_6}$. 
+
+%obvod 5
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short, -*] (1,4)
+    node[label={left:\textcolor{red}{A}}, yshift=0.25cm] {}
+    to[short] (1,5)
+    to[R=$R_1$, -*] (4,5)
+    node[label={above:\textcolor{red}{B}}] {}
+    to[R=$R_7$] (7,5)--(7,4);
+    
+    \draw
+    (1,4) -- (1,3)
+    to[R=$R_{234}$, -*] (4,3)
+    node[label={below:\textcolor{red}{C}}] {}
+    to [R=$R_6$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$] (0,0);
+     
+     \draw
+     (4,5) to[R=$R_5$] (4,3);
+     
+\end{circuitikz}
+\caption{Obvod s vyznačenými uzly}
+\end{center}
+\end{figure}
+
+\noindent
+V zadaném obvodu aplikujeme transformaci trojúhelník -- hvězda pro rezistory $R_1$, $R_{234}$ a $R_5$.
+
+%obrazek 6 - transformace trojuhelnik-hvezda
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[R=$R_{234}$, -o] (2,2)
+    node[label={above:\textcolor{red}{A}}] {}
+    to[R=$R_1$, -o] (4,0)
+    node[label={above:\textcolor{red}{B}}] {}
+    to[R=$R_5$, -o] (0,0)
+    node[label={above:\textcolor{red}{C}}] {};
+    
+    \draw
+    [-{Latex[length=5mm, width=2mm]}] (5.5,1)--(7.5,1);
+    
+    \draw
+    (11,4) to[short, -o] (11,4)
+    node[label={above:\textcolor{red}{A}}] {}
+    to [R=$R_A$, -*] (11,2)
+    to [R,l_=$R_C$] (9.5,0)
+    to [short, -o] (9.5,0)
+    node[label={above:\textcolor{red}{C}}] {};
+    
+    \draw
+    (11,2) to [R=$R_B$] (12.5,0) 
+    to [short, -o] (12.5,0)
+    node[label={above:\textcolor{red}{B}}] {};
+\end{circuitikz}
+\caption{Transformace trojúhelník -- hvězda}
+\end{center}
+\end{figure}
+
+\newpage
+
+\noindent
+Nyní můžeme trojúhelník překreslit přímo do zadaného obvodu:
+
+%obvod 7
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short, -*] (1,4)
+    node[label={left:\textcolor{red}{A}}, yshift=0.25cm] {}
+    to[R=$R_1$, -*] (3,5)
+    node[label={above:\textcolor{red}{B}}] {}
+    to[R=$R_7$] (6,5)--(6,4);
+    
+    \draw
+    (1,4) to[R=$R_{234}$, -*] (3,3)
+    node[label={below:\textcolor{red}{C}}] {}
+    to [R=$R_6$] (6,3)
+    to[short, -*] (6,4) -- (7,4)
+    (7,4) -- (7,0)
+    to[R=$R_8$] (0,0);
+     
+     \draw
+     (3,5) to[R=$R_5$] (3,3);
+     
+\end{circuitikz}
+\caption{Zadaný obvod před transformací}
+\end{center}
+\end{figure}
+
+\noindent
+Aplikace transformace trojuhelník -- hvězda:
+
+%obvod 8
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*] (2,4)
+    to[R=$R_B$] (4,5)
+    to[R=$R_7$] (7,5)--(7,4);
+    
+    \draw
+    (2,4) to[R=$R_C$] (4,3)
+    to [R=$R_6$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$] (0,0);
+     
+\end{circuitikz}
+\caption{Zadaný obvod po transformaci}
+\end{center}
+\end{figure}
+
+\newpage
+
+\noindent
+Následně si obvod přeuspořádáme pro lepší názornost:
+
+%obvod 9
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*] (2,4)
+    to[short] (2,5)
+    to[R=$R_B$] (4.5,5)
+    to[R=$R_7$] (7,5)--(7,4);
+    
+    \draw
+    (2,4) to[short] (2,3)
+    to[R=$R_C$] (4.5,3)
+    to [R=$R_6$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$] (1,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Obvod po přeuspořádání}
+\end{center}
+\end{figure}
+
+\noindent
+Při odvozován vztahů pro převod trojúhelníku na hvězdu je možný zápis soustavy rovnic ve tvaru:
+\[R_A + R_B = \frac{R_1 * (R_{234} + R_5)}{R_1 + R_{234} + R_5}\]
+\[R_A + R_C=\frac{R_{234} * (R_1 + R_5)}{R_1 + R_{234} + R_5}\]
+\[R_B + R_C=\frac{R_5 * (R_1 + R_{234})}{R_1 + R_{234} + R_5}\]
+
+\noindent
+Po úpravě rovnic dostáváme 3 vztahy pro $R_A$, $R_B$ a $R_C$:
+\[R_A = \frac{R_1 * R_{234}}{R_1 + R_{234} + R_5} = \frac{680 * \num{741,403 509} }{680 + \num{741,403 509} + 575} = \SI{252,531 306}{\ohm}\]
+
+\[R_B = \frac{R_1 * R_5}{R_1 + R_{234} + R_5} = \frac{680 * 575}{680 + \num{741,403 509} + 575} = \SI{195,852 19}{\ohm}\]
+
+\[R_C = \frac{R_{234} * R_5}{R_1 + R_{234} + R_5} = \frac{\num{741,403 509} * 575}{680 + \num{741,403 509} + 575} = \SI{213,537 502}{\ohm}\]
+
+\newpage
+
+\noindent
+V takto transformovaném obvodu budeme dále zjednodušovat podle sériového či paralerního zapojení rezistorů. 
+Nyní můžeme nahradit rezistory $R_B$ a $R_7$ zapojené v sérii rezistorem $R_{B7}$ podle vztahu: 
+\[R_{B7} = R_B + R_7 = \num{195,852 190} + 355 = \SI{550,852 19}{\ohm}\]
+
+%obvod 10
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*] (2,4)
+    to[short] (2,5)
+    to[R=$R_{B7}$] (7,5)--(7,4);
+    
+    \draw
+    (2,4) to[short] (2,3)
+    to[R=$R_C$] (4.5,3)
+    to [R=$R_6$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$] (1,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_B$ a $R_7$ rezistorem $R_{B7}$}
+\end{center}
+\end{figure}
+
+\noindent
+Tento postup použijeme také pro rezistory $R_C$ a $R_6$, které jsou opět zapojené v sérii. 
+Nahradíme je \newline rezistorem $R_{C6}$ podle vztahu: 
+\[R_{C6} = R_C + R_6 = \num{213,537 502} + 870 = \SI{1083,537 502}{\ohm}\]
+
+%obvod 11
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*] (2,4)
+    to[short] (2,5)
+    to[R=$R_{B7}$] (5,5)--(5,4);
+    
+    \draw
+    (2,4) to[short] (2,3)
+    to [R=$R_{C6}$] (5,3)
+    to[short, -*] (5,4) -- (6,4)
+    (6,4) -- (6,0)
+    to[R=$R_8$] (1,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_C$ a $R_6$ rezistorem $R_{C6}$}
+\end{center}
+\end{figure}
+
+\newpage
+
+\noindent
+Nyní si můžeme povšimnout, že nově vzniklé rezistory $R_{B7}$ a $R_{C6}$ jsou zapojené paralerně. 
+Nahradíme je rezistorem $R_{BC67}$ podle vztahu:
+
+\[R_{BC67} = \frac{R_{B7} * R_{C6}}{R_{B7} + R_{C6}} = \frac{\num{550,852 19} * \num{1083,537 502}}{\num{550,852 19} + \num{1083,537 502}} = \SI{365,193 814}{\ohm}\]
+
+%obvod 12
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$] (3,4)
+    to[R=$R_{BC67}$] (6,4) -- (6,0)
+    to[R=$R_8$] (0,0);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_{B7}$ a $R_{C6}$ rezistorem $R_{BC67}$}
+\end{center}
+\end{figure}
+
+\noindent
+Dalším postupem ke zjednodušení obvodu je nahradit rezistory $R_A$ a $R_{BC67}$, zapojené v sérii, 
+rezistorem $R_{ABC67}$ dle vztahu:
+\[R_{ABC67} = R_A + R_{BC67} = \num{252,531 306} + \num{365,193 814} = \SI{617,725 12}{\ohm}\]
+
+%obvod 13
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_{ABC67}$] (5,4) -- (5,0)
+    to[R=$R_8$] (0,0);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_A$ a $R_{BC67}$ rezistorem $R_{ABC67}$}
+\end{center}
+\end{figure}
+
+\newpage
+
+\noindent
+Posledním krokem je již nahradit rezistory $R_{ABC67}$ a $R_8$ zapojené v sérii výsledným rezistorem $R_{EKV}$ podle vztahu:
+\[R_{EKV} = R_{ABC67} + R_8 = \num{617,725 12} + 265 = \SI{882,725 12}{\ohm}\]
+
+%obvod 14
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[short] (4,4)
+    to[R=$R_{EKV}$, i>_=$I$] (4,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_{ABC67}$ a $R_8$ rezistorem $R_{EKV}$}
+\end{center}
+\end{figure}
+
+\noindent
+Po zjednodušení obvodu můžeme vypočítat hodnotu proudu $I$ dle Ohmova zákona:
+\[I = \frac{U_V}{R} = \frac{215}{\num{882,725 12}} = \SI{0,243 564}{\ampere}\]
+
+\vspace{1cm}
+\subsection{Zpětné počítání hodnot napětí a proudů}
+Nyní máme obvod zjednodušený a můžeme zpětně dopočítat jednotlivé hodnoty napětí a proudů.
+V následujících výpočtech opět využijeme Ohmův zákon: 
+\[I = \frac{U}{R}\]
+Pro kontrolu můžeme využít také Kirchhoffových zákonů.
+\vspace{7mm}
+\newline
+Z následujícího obvodu nám vyplývají vztahy pro napětí $U_{R_{ABC67}}$ a $U_{R_8}$:
+\[U_{R_{ABC67}} = I * R_{ABC67} = \num{0,243 564} * \num{617,725 12} = \SI{150,455 601}{\volt}\]
+\[U_{R_8} = I * R_8 = \num{0,243 564} * 265 = \SI{64,54446}{\volt}\]
+
+%obvod 15
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_{ABC67}$, v=$U_{R_{ABC67}}$, i>^=$I$] (5,4) -- (5,0)
+    to[R=$R_8$, v=$U_{R_8}$] (0,0);
+     
+\end{circuitikz}
+\caption{Napětí $U_{R_{ABC67}}$ a $U_{R_8}$:}
+\end{center}
+\end{figure}
+
+\noindent
+Pro kontrolu využijeme \rom{2}. Kirchhoffův zákon a to v následujcím tvaru:
+\[U_V - U_{R_{ABC67}} - U_{R_8} = 0\]
+\[215 - \num{150,455 601} - \num{64,544 46} \approx 0\]
+
+\noindent
+Z dalšího obvodu nám vyplývají vztahy pro napětí $U_{R_A}$ a $U_{R_{BC67}}$:
+\[U_{R_A} = I * R_A = \num{0,243 564} * \num{252,531 306} = \SI{64,507 535}{\volt}\]
+\[U_{R_{BC67}} = I * R_{BC67} = \num{0,243 564} * \num{365,193 814} = \SI{88,948 066}{\volt}\]
+
+
+%obvod 16
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, v=$U_{R_A}$, i>^=$I$] (3,4)
+    to[R=$R_{BC67}$, v=$U_{R_{BC67}}$] (6,4) -- (6,0)
+    to[R=$R_8$, v=$U_{R_8}$] (0,0);
+     
+\end{circuitikz}
+\caption{Napětí $U_{R_A}$ a $U_{R_{BC67}}$}
+\end{center}
+\end{figure}
+
+\noindent
+Kontrola pomocí \rom{2}. Kirchhoffova zákona:
+\[U_V - U_{R_A} - U_{R_{BC67}} - U_{R_8} = 0\]
+\[215 - \num{64,507 535} - \num{88,948 066} - 265 \approx 0\]
+
+\newpage
+
+\noindent
+Nyní si můžeme vyjádřit vztahy pro proudy $I_{R_{B7}}$ a $I_{R_{C6}}$:
+
+\[I_{R_{B7}} = \frac{U_{R_{BC67}}}{R_{B7}} = \frac{\num{88,948 066}}{\num{550,852 19}} = \SI{0,161474}{\ampere}\]
+\[I_{R_{C6}} = \frac{U_{R_{BC67}}}{R_{C6}} = \frac{\num{88,948 066}}{\num{1 083,537 502}} = \SI{0,082090436}{\ampere}\footnote{Výsledek uveden na 9 desetinných míst za účelem přesnosti následného výpočtu $U_{R_6}$.}\]
+
+%obvod 17
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*, v=$U_{R_A}$, i>^=$I$] (2,4)
+    to[short] (2,5)
+    to[R=$R_{B7}$, i>^=$I_{R_{B7}}$] (5,5)--(5,4);
+    
+    \draw
+    (2,4) to[short] (2,3)
+    to [R=$R_{C6}$, v=$U_{R_{BC67}}$, i>^=$I_{R_{C6}}$] (5,3)
+    to[short, -*] (5,4) -- (6,4)
+    (6,4) -- (6,0)
+    to[R=$R_8$, v=$U_{R_8}$] (1,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Proudy $I_{R_{B7}}$ a $I_{R_{C6}}$}
+\end{center}
+\end{figure}
+
+\noindent
+Kontrola nyní podle \rom{1}. Kirchhoffova zákona:
+\[I - I_{R_{B7}} - I_{R_{C6}} = 0\]
+\[\num{0,243 564} - \num{0,161474} - \num{0,082090436} \approx 0\]
+
+\newpage
+
+\noindent
+Jako poslední krok ve zpětném počítání hodnot napětí a proudů si vyjádříme vztahy pro napětí $U_{R_C}$ a námi 
+hledané napětí $U_{R_6}$:
+
+\[U_{R_C} = I_{R_{C6}} * R_C = \num{0,082090436} * \num{213,537 502} = \SI{17,529387}{\volt}\]
+\[U_{R_6} = I_{R_{C6}} * R_6 = \num{0,082090436} * 870 = \SI{71,418679}{\volt}\]
+
+%obvod 18
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_v$] ++(0,4)
+    to[R=$R_A$, -*, v=$U_{R_A}$, i>^=$I$] (2,4)
+    to[short] (2,5)
+    to[R=$R_{B7}$, v=$U_{R_{BC67}}$, i>^=$I_{R_{B7}}$] (7,5)--(7,4);
+    
+    \draw
+    (2,4) to[short] (2,3)
+    to[R=$R_C$, v=$U_{R_C}$, i>^=$I_{R_{C6}}$] (4.5,3)
+    to [R=$R_6$, v=$U_{R_6}$] (7,3)
+    to[short, -*] (7,4) -- (8,4)
+    (8,4) -- (8,0)
+    to[R=$R_8$, v=$U_{R_8}$] (1,0) -- (0,0);
+     
+\end{circuitikz}
+\caption{Napětí $U_{R_C}$ a $U_{R_6}$}
+\end{center}
+\end{figure}
+
+\noindent
+Provedeme kontrolu pomocí \rom{2}. Kirchhoffova zákona:
+\[U_V - U_{R_A} - U_{R_C} - U_{R_6} - U_{R_8} = 0\]
+\[215 - \num{64,507 535} - \num{17,529387} - \num{71,418679} - \num{64,54446} \approx 0\]
+
+\noindent
+Výsledné hodnoty:
+\[I_{R_6} = I_{R_{C6}} = \num{0,082090436} \doteq \doubleunderline{\SI{0,0821}{\ampere}}\]
+\[U_{R_6} = \num{71,418679} \doteq \doubleunderline{\SI{71,4187}{\volt}}\]
+
+\newpage
+
+%Priklad 2
+\rhead{\bfseries Příklad 2}
+
+\section{Příklad 2 -- Théveninova věta}
+\textbf{Zadání:} Stanovte napětí $U_{R_3}$ a proud $I_{R_3}$. Použijte metodu Théveninovy věty.
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|} 
+      \hline
+      %prvni radek
+       sk. & $U$ [\si{\volt}] & $R_1$ [\si{\ohm}] & $R_2$ [\si{\ohm}]
+       & $R_3$ [\si{\ohm}] & $R_4$ [\si{\ohm}] & $R_5$ [\si{\ohm}]
+       & $R_6$ [\si{\ohm}]\\
+       %druhy radek
+       \hline
+       E & 250 & 150 & 335 & 625 & 245 & 600 & 150 \\
+     \hline
+    \end{tabular}
+    \caption{Zadané hodnoty}
+    \label{tab:2}
+  \end{center}
+ \end{table}
+
+%obvod 19
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,2) -- (0,3)%zdroj U
+    to[short, -*] (1,3)
+    (1,3) -- (1,4)
+    to[R=$R_1$, -*] (4,4) -- (5,4)
+    to[R=$R_4$] (6,4) -- (7,4)
+    to[R=$R_5$, -*] (7,2) -- (7,0)
+    (7,0) -- (5,0)
+    (5,0) -- (0,0);
+    
+    \draw
+    (1,3) -- (1,2)
+    to[R=$R_2$, -*] (4,2) -- (5,2)
+    to[R=$R_6$] (6,2) -- (7,2);
+    
+    \draw
+    (4,4) to[R=$R_3$, v=$U_{R_3}$, i>^=$I_{R_3}$] (4,2);
+    
+\end{circuitikz}
+\caption{Zadaný obvod}
+\end{center}
+\end{figure}
+
+\subsection{Vyjádření vztahu pro proud $I_{R_3}$}
+Nejprve si nahradíme obvod bez rezistoru $R_3$ obvodem skutečného zdroje napětí:
+
+%obvod 20
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U_I$] ++(0,3)%zdroj Ui
+    to [R=$R_I$, -o] (4,3)
+    to [R=$R_3$, i>^=$I_{R_3}$, -o] (4,0) -- (0,0);
+    
+\end{circuitikz}
+\caption{Nahrazení části obvodu obvodem skutečného zdroje napětí}
+\end{center}
+\end{figure}
+
+\noindent
+Pomocí výše uvedeného obvodu si vyjádříme vztah pro $I_{R_3}$:
+
+\[I_{R_3} = \frac{U_i}{R_i + R_3}\]
+
+\vspace{1cm}
+\noindent
+Dále budeme pokračovat výpočtem prozatím neznámých hodnot, a to hodnot $U_i$ a $R_i$.
+
+\newpage
+\subsection{Výpočet hodnot odporu $R_i$ a napětí $U_i$}
+Nyní překreslíme obvod bez rezistoru $R_3$ a napěťový zdroj nahradíme zkratem:
+
+%obvod 21
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) -- (0,2)
+    (0,2) -- (0,3)
+    to[short, -*] (1,3)
+    (1,3) -- (1,4)
+    to[R=$R_1$, -o] (4,4) -- (5,4)
+    to[R=$R_4$] (6,4) -- (7,4)
+    to[R=$R_5$, -*] (7,2) -- (7,0)
+    (7,0) -- (5,0)
+    (5,0) -- (0,0);
+    
+    \draw
+    (1,3) -- (1,2)
+    to[R=$R_2$, -o] (4,2) -- (5,2)
+    to[R=$R_6$] (6,2) -- (7,2);
+    
+\end{circuitikz}
+\caption{Obvod bez rezistoru $R_3$ s nahrazením napěťového zdroje zkratem}
+\end{center}
+\end{figure}
+
+\noindent
+Následně si obvod postupně zjednodušíme:
+
+\[R_{45} = R_4 + R_5\]
+
+%obvod 22
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) -- (0,2)
+    (0,2) -- (0,3)
+    to[short, -*] (1,3)
+    (1,3) -- (1,4)
+    to[R=$R_1$, -o] (4,4) -- (5,4)
+    to[R=$R_{45}$] (6,4) -- (7,4)
+    (7,4) -- (7,0)
+    (7,0) -- (5,0)
+    (5,0) -- (0,0);
+    
+    \draw
+    (1,3) -- (1,2)
+    to[R=$R_2$, -o] (4,2) -- (5,2)
+    to[R=$R_6$] (6,2) -- (7,2);
+    
+\end{circuitikz}
+\caption{Nahrazení rezistorů $R_4$ a $R_5$ rezistorem $R_{45}$}
+\end{center}
+\end{figure}
+
+\newpage
+\noindent
+Obvod si překreslíme pro lepší názornost:
+
+%obvod 23
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (4,6) to[short, -o] (4,6) -- (4,5)
+    (4,5) -- (3,5)
+    to[R=$R_1$, -*] (3,3)
+    to[R=$R_2$] (3,1) -- (4,1)
+    to [short, -o] (4,0);
+    
+    \draw
+    (4,5) -- (5,5)
+    to[R=$R_{45}$, -*] (5,3)
+    to[R=$R_6$] (5,1) -- (4,1);
+    
+    \draw
+    (3,3) -- (5,3);
+    
+\end{circuitikz}
+\caption{Překreslený obvod 1}
+\end{center}
+\end{figure}
+
+\noindent
+Dále si obvod překreslíme tak, aby lépe vynikly zapojení mezi jednotlivými rezistory:
+
+%obvod 24
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (4,7) to[short, -o] (4,7) -- (4,6)
+    (4,6) -- (3,6)
+    to[R=$R_1$] (3,4)
+    to[short, -*] (4,4)
+    to[short, -*] (4,3) -- (3,3)
+    to[R=$R_2$] (3,1) -- (4,1)
+    to [short, -o] (4,0);
+    
+    \draw
+    (4,6) -- (5,6)
+    to[R=$R_{45}$] (5,4) -- (4,4);
+    
+    \draw
+    (4,3) -- (5,3)
+    to[R=$R_6$] (5,1) -- (4,1);
+    
+\end{circuitikz}
+\caption{Překreslený obvod 2}
+\end{center}
+\end{figure}
+
+\newpage
+\noindent
+Obvod postupně dále zjednodušíme:
+
+%obvod 25
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (4,7) to[short, -o] (4,7) -- (4,6)
+    (4,6) -- (3,6)
+    to[R=$R_1$] (3,4)
+    to[short, -*] (4,4)
+    to[short, -*] (4,3) -- (3,3)
+    to[R=$R_2$] (3,1) -- (4,1)
+    to [short, -o] (4,0);
+    
+    \draw
+    (4,6) -- (5,6)
+    to[R=$R_{45}$] (5,4) -- (4,4);
+    
+    \draw
+    (4,3) -- (5,3)
+    to[R=$R_6$] (5,1) -- (4,1);
+    
+    \draw
+    [-{Latex[length=5mm, width=2mm]}] (6,3.5)--(8,3.5);
+    
+    \draw
+    (9,7) to[short, -o] (9,7) -- (9,6)
+    to[R=$R_{145}$] (9,4) -- (9,3)
+    to[R=$R_{26}$] (9,1)
+    to [short, -o] (9,0);
+    
+    \draw
+    [-{Latex[length=5mm, width=2mm]}] (10,3.5)--(12,3.5);
+    
+    \draw
+    (13,7) to[short, -o] (13,7)
+    to[R=$R_i$, -o] (13,0);
+    
+\end{circuitikz}
+\caption{Postupné zjednodušení obvodu}
+\end{center}
+\end{figure}
+
+\noindent
+Ze zmíněného zjednodušení obvodu vyplývají následující vztahy mezi rezistory:
+
+\[R_{145} = \frac{R_1 * R_{45}}{R_1 + R_{45}}\]
+\[R_{26} = \frac{R_2 * R_6}{R_2 + R_6}\]
+\[R_i = R_{145} + R_{26}\]
+
+\noindent
+Vypočítáme hodnotu rezistoru $R_i$:
+
+\[R_i = \frac{R_1 * (R_4 + R_5)}{R_1 + R_4 + R_5} + \frac{R_2 * R_6}{R_2 + R_6} = \frac{150 * (245 + 600)}{150 + 245 + 500} + \frac{335 * 150}{335 + 150} =  \SI{230,995182}{\ohm}\]
+
+\noindent
+Dále překreslíme obvod bez $R_3$ a určíme napětí naprázdno:
+
+%obvod 26
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,2) -- (0,3)%zdroj U
+    to[short, -*] (1,3)
+    (1,3) -- (1,4)
+    to[R=$R_1$, -o, v=$U_{R_1}$] (4,4) -- (5,4)
+    to[R=$R_4$] (6,4) -- (7,4)
+    to[R=$R_5$, -*] (7,2) -- (7,0)
+    (7,0) -- (5,0)
+    (5,0) -- (0,0);
+    
+    \draw
+    (1,3) -- (1,2)
+    to[R=$R_2$, -o, v=$U_{R_2}$] (4,2) -- (5,2)
+    to[R=$R_6$] (6,2) -- (7,2);
+    
+    \draw
+    (4,4) to[open, v=$U_i$] (4,2);
+    
+    \draw
+    [thin,<-,=triangle 45] (2.5,2.9)node{\rom{1}.}  ++(-60:0.3) arc (-60:170:0.3);
+    
+\end{circuitikz}
+\caption{Obvod bez $R_3$}
+\end{center}
+\end{figure}
+
+\noindent
+Pomocí \rom{2}. Kirchhoffova zákona si vyjádříme vztah napětí ve smyčce vyznačené v obvodu:
+\vfill
+\noindent
+\rom{1}.
+\[U_i + U_{R_1} - U_{R_2} = 0\]
+\[U_i = U_{R_2} - U_{R_1}\]
+
+\noindent
+Dále si vyjádříme vztahy napětí $U_{R_1}$ a napětí $U_{R_2}$:
+
+\[U_{R_1} = U * \frac{R_1}{R_1 + R_4 + R_5}\]
+\[U_{R_2} = U * \frac{R_2}{R_2 + R_6}\]
+
+\noindent
+Výše zmíněné vztahy si dosadíme do vzorce pro výpočet napětí $U_i$. 
+Do nově vzniklého vztahu dosadíme číselné hodnoty a vypočítáme hodnotu napětí $U_i$: 
+
+\[U_i = U_{R_2} - U_{R_1}\]
+\[U_i = U * \frac{R_2}{R_2 + R_6} - U * \frac{R_1}{R_1 + R_4 + R_5}\]
+\[U_i = U * \left(\frac{R_2}{R_2 + R_6} - \frac{R_1}{R_1 + R_4 + R_5} \right)\]
+\[U_i = 250 * \left(\frac{335}{335 + 150} - \frac{150}{150 + 245 + 600} \right)\]
+\[U_i = \SI{134,99197}{\volt}\]
+
+\subsection{Výpočet hodnot proudu $I_{R_3}$ a napětí $U_{R_3}$}
+Nyní máme vypočítané hodnoty pro napětí $U_i$ a odpor $R_i$. Můžeme tedy vypočítat hodnoty proudu $I_{R_3}$ \newline a napětí $U_{R_3}$:
+
+\[I_{R_3} = \frac{U_i}{R_i + R_3} = \frac{\num{134,991 97}}{\num{230,995 182} + 625} = \num{0,157 701 788}  \doteq \doubleunderline{\SI{0,1577}{\ampere}}\]
+
+\[U_{R_3} = R_3 * I_{R_3} = 625 * \num{0,157 701 788} = \num{98,563 618} \doteq \doubleunderline{\SI{98,5636}{\volt}}\]
+\newpage
+
+%Priklad 3
+\rhead{\bfseries Příklad 3}
+
+\section{Příklad 3 -- Metoda uzlových napětí}
+\textbf{Zadání:} Stanovte napětí $U_{R_2}$ a proud $I_{R_2}$. Použijte metodu uzlových napětí ($U_A$, $U_B$, $U_C$).
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|} 
+      \hline
+      %prvni radek
+       sk. & $U$ [\si{\volt}] & $I_1$ [\si{\ampere}] & $I_2$ [\si{\ampere}]
+       & $R_1$ [\si{\ohm}] & $R_2$ [\si{\ohm}] & $R_3$ [\si{\ohm}]
+       & $R_4$ [\si{\ohm}] & $R_5$ [\si{\ohm}]\\
+       %druhy radek
+       \hline
+       D & 115 & 0,6 & 0,9 & 50 & 38 & 48 & 37 & 28\\
+     \hline
+    \end{tabular}
+    \caption{Zadané hodnoty}
+    \label{tab:3}
+  \end{center}
+ \end{table}
+
+%obvod 27
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+     \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,6)%zdroj U
+    to[R=$R_1$, -*] (3,6)
+    to[R=$R_3$, -*] (8,6) -- (11,6)
+    (11,6) -- (11,4)
+    to[ioosource, v^=$I_1$] (11,2) -- (11,0)
+    to[short, -*] (8,0)
+    to[R=$R_4$, -*] (3,0) -- (0,0);
+    
+    \draw
+    (3,6) -- (3,4)
+    to[R=$R_2$, v=$U_{R_2}$, i>^=$I_{R_2}$] (3,2)
+    to[short, -*]  (3,0) -- (3,-3)
+    (3,-3) -- (4.5, -3)
+    to[ioosource, v>=$I_2$] (6.5,-3) -- (8,-3)
+    (8,-3) -- (8,0); 
+    
+    \draw
+    (8,6) to [R=$R_5$, -*] (8,0);
+    
+    \draw
+    node (A) at (8,6) {}
+    node (B) at (3.25,0.25) {}
+    [thick, -latex] (A) -- (B) node[midway,above left] {$U_B$};
+    
+    \draw
+    node (A) at (3,6) {}
+    node (B) at (3,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (8,0) {}
+    node (B) at (3,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (4.25,4) {$U_A$}
+    node (B) at (5.5,-1.2) {$U_C$};
+    
+\end{circuitikz}
+\caption{Zadaný obvod}
+\end{center}
+\end{figure}
+
+\newpage
+\subsection{Vyjádření vztahů mezi jednotlivými proudy obvodu}
+Jednotlivé vztahy mezi proudy v obvodu vyjádříme pomocí \rom{1}. Kirchhoffova zákona pro uzly A, B a D. 
+Uzel C bude pro nás sloužit jako referenční uzel:
+
+\[A: I_{R_1} + I_{R_3} - I_{R_2} = 0\]
+\[B: I_1 - I_{R_3} - I_{R_5} = 0\]
+\[D: I_2 + I_{R_5} - I_{R_4} - I_1 = 0\]
+
+%obvod 28
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+     \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,6)%zdroj U
+    to[R=$R_1$, -*, i^=$I_{R_1}$] (3,6)
+    node[label={above:\textcolor{red}{A}}] {}
+    to[R=$R_3$, -*, i<^=$I_{R_3}$] (8,6)
+    node[label={above:\textcolor{red}{B}}] {}
+    (8,6) -- (11,6)
+    (11,6) -- (11,4)
+    to[ioosource, v^=$I_1$] (11,2) -- (11,0)
+    to[short, -*] (8,0)
+    node[label={below:\textcolor{red}{D}}, xshift=0.25cm] {}
+    to[R=$R_4$, -*,  i>_=$I_{R_4}$] (3,0)
+    node[label={below:\textcolor{red}{C}},  xshift=0.2cm] {}
+    (3,0) -- (0,0);
+    
+    \draw
+    (3,6) -- (3,4)
+    to[R=$R_2$, v=$U_{R_2}$, i>^=$I_{R_2}$] (3,2)
+    to[short, -*]  (3,0) -- (3,-3)
+    (3,-3) -- (4.5, -3)
+    to[ioosource, v>=$I_2$] (6.5,-3) -- (8,-3)
+    (8,-3) -- (8,0); 
+    
+    \draw
+    (8,6) -- (8,4)
+    to [R=$R_5$, i>^=$I_{R_5}$] (8,2)
+    to[short, -*] (8,0);
+    
+    \draw
+    node (A) at (8,6) {}
+    node (B) at (3.25,0.25) {}
+    [thick, -latex] (A) -- (B) node[midway,above left] {$U_B$};
+    
+    \draw
+    node (A) at (3,6) {}
+    node (B) at (3,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (8,0) {}
+    node (B) at (3,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (4.25,4) {$U_A$}
+    node (B) at (5.5,-1.2) {$U_C$};
+    
+\end{circuitikz}
+\caption{Zadaný obvod s označemýni uzly a proudy}
+\end{center}
+\end{figure}
+
+\newpage
+\subsection{Vytvoření náhradních obvodů}
+Dále si vytvoříme náhradní obvody pro určení vztahů pro jednotlivé proudy obvodu.
+\vspace{10mm}
+\newline
+Určení proudu $I_{R_1}$:
+
+\[R_1 * I_{R_1} + U_A - U = 0\]
+\[I_{R_1} = \frac{U - U_A}{R_1}\]
+
+%obvod 29
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,3)%zdroj Ui
+    to [R=$R_1$, i>^=$I_{R_1}$, -o] (4,3)
+    node[label={above:\textcolor{red}{A}}] {}
+    to [open, v=$U_A$, -o] (4,0)
+    node[label={below:\textcolor{red}{C}}] {}
+    (4,0) -- (0,0);
+    
+    \draw
+    [thin,<-,=triangle 45] (2,1.5)node{}  ++(-60:0.5) arc (-60:170:0.5);
+    
+\end{circuitikz}
+\caption{Náhradní obvod pro určení proudu $I_{R_1}$}
+\end{center}
+\end{figure}
+
+\noindent
+Určení proudu $I_{R_2}$:
+\[R_2 * I_{R_2} - U_A = 0\]
+\[I_{R_2} = \frac{U_A}{R_2}\]
+
+%obvod 30
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+     \draw
+    (0,0) to[short, -o] (0,0)
+    node[label={below:\textcolor{red}{C}}] {}
+    to[R=$R_2$, i<=$I_{R_2}$, -o] (0,4)
+    node[label={above:\textcolor{red}{A}}] {};
+    
+     \draw
+    node (A) at (0,4) {}
+    node (B) at (0,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (1.2,2) {$U_A$};
+    
+    \draw
+    [thin,->,=triangle 45] (0.42,2)node{}  ++(-60:0.15) arc (-60:170:0.15);
+    
+\end{circuitikz}
+\caption{Náhradní obvod pro určení proudu $I_{R_2}$}
+\end{center}
+\end{figure}
+
+\newpage
+\noindent
+Určení proudu $I_{R_3}$:
+
+\[R_3 * I_{R_3} + U_A - U_B = 0\]
+\[I_{R_3} = \frac{U_B - U_A}{R_3}\]
+
+%obvod 31
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[short, -o] (0,0)
+    node[label={below:\textcolor{red}{C}}] {}
+    to[open, -o] (0,3)
+    node[label={above:\textcolor{red}{A}}] {}
+    to [R=$R_3$, i<^=$I_{R_3}$, -o] (4,3)
+    node[label={above:\textcolor{red}{B}}] {};
+    
+    \draw
+    [thin,->,=triangle 45] (0.7,1.5)node{}  ++(-60:0.5) arc (-60:170:0.5);
+    
+    \draw
+    node (A) at (0,3) {}
+    node (B) at (0,0) {}
+    [thick, -latex] (A) to[bend right] (B);
+    
+    \draw
+    node (A) at (-1,1.5) {$U_A$};
+    
+     \draw
+    node (A) at (4,3) {}
+    node (B) at (0,0) {}
+    [thick, -latex] (A) -- (B) node[midway,below right] {$U_B$};
+    
+\end{circuitikz}
+\caption{Náhradní obvod pro určení proudu $I_{R_3}$}
+\end{center}
+\end{figure}
+
+\noindent
+Určení proudu $I_{R_4}$:
+
+\[R_4 * I_{R_4} - U_C = 0\]
+\[I_{R_4} = \frac{U_C}{R_4}\]
+
+%obvod 32
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+     \draw
+    (0,0) to[short, -o] (0,0)
+    node[label={above:\textcolor{red}{C}}] {}
+    to[R=$R_4$, i<=$I_{R_4}$, -o] (4,0)
+    node[label={above:\textcolor{red}{D}}] {};
+    
+     \draw
+    node (A) at (4,0) {}
+    node (B) at (0,0) {}
+    [thick, -latex] (A) to[bend left] (B);
+    
+    \draw
+    node (A) at (2,-1) {$U_C$};
+    
+    \draw
+    [thin,->,=triangle 45] (2,-0.42)node{}  ++(-60:0.15) arc (-60:170:0.15);
+    
+\end{circuitikz}
+\caption{Náhradní obvod pro určení proudu $I_{R_4}$}
+\end{center}
+\end{figure}
+
+\newpage
+\noindent
+Určení proudu $I_{R_5}$:
+
+\[R_5 * I_{R_5} + R_4 * I_{R_4} - U_B = 0\]
+\[I_{R_5} = \frac{U_B - R_4 * I_{R_4}}{R_5} = \frac{U_B - R_4 * \frac{U_C}{R_4}}{R_5}\]
+\[I_{R_5} = \frac{U_B - U_C}{R_5}\]
+
+%obvod 33
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[short, -o] (0,0)
+    node[label={below:\textcolor{red}{C}}] {}
+    to[R=$R_4$, i<^=$I_{R_4}$, -o] (4,0)
+    node[label={below:\textcolor{red}{D}}] {}
+    to [R=$R_5$, i<^=$I_{R_5}$, -o] (4,4)
+    node[label={above:\textcolor{red}{B}}] {};
+    
+    \draw
+    [thin,<-,=triangle 45] (2.2,1.2)node{}  ++(-60:0.5) arc (-60:170:0.5);
+    
+     \draw
+    node (A) at (4,4) {}
+    node (B) at (0,0) {}
+    [thick, -latex] (A) -- (B) node[midway,above left] {$U_B$};
+    
+\end{circuitikz}
+\caption{Náhradní obvod pro určení proudu $I_{R_3}$}
+\end{center}
+\end{figure}
+
+\subsection{Výpočet hodnoty napětí $U_{R_2}$ a proudu $I_{R_2}$}
+
+Nejprve dosadíme do vyjádřených vztahů mezi proudu vztahy pro jednotlivé proudy:
+
+\[A:  \frac{U - U_A}{R_1} + \frac{U_B - U_A}{R_3} - \frac{U_A}{R_2} = 0\]
+\[B: I_1 - \frac{U_B - U_A}{R_3} - \frac{U_B - U_C}{R_5} = 0\]
+\[C: I_2 + \frac{U_B - U_C}{R_5} - \frac{U_C}{R_4} - I_1 = 0\]
+
+\noindent
+Upravíme rovnice:
+
+\[R_2 * R_3 * (U - U_A) + R_1 * R_2 * (U_B - U_A) - R_1 * R_3 * U_A = 0\]
+\[R_3 * R_5 * I_1 - R_5 * (U_B - U_A) - R_3 * (U_B - U_C) = 0\]
+\[R_4 * R_5 * I_2 + R_4 * (U_B - U_C) - R_5 * U_C - R_4 * R_5 * I_1 = 0\]
+
+\noindent
+Dosadíme číselné hodnoty a upravíme rovnice na potřebný tvar:
+
+\[38 * 48 * (115 - U_A) + 50 * 38 * (U_B - U_A) - 50 * 48 * U_A = 0\]
+\[48 * 28 * 0,6 - 28 * (U_B - U_A) - 48 * (U_B - U_C) = 0\]
+\[37 * 28 * 0,9 + 37 * (U_B - U_C) - 28 * U_C - 37 * 28 * 0,6 = 0\]
+
+\begin{center}
+    \line(1,0){350}
+\end{center}
+
+\[\num{209 760} - \num{1 824} * U_A + \num{1 900} * U_B - \num{1 900} * U_A - \num{2 400} * U_A = 0\]
+\[806,4 - 28 * U_B + 28 * U_A - 48 * U_B + 48 * U_C = 0\]
+\[932,4 + 37 * U_B - 37 * U_C - 28 * U_C - 621,6 = 0\]
+
+\begin{center}
+    \line(1,0){350}
+\end{center}
+
+\newpage
+
+\[\num{-6 124} * U_A + \num{1 900} * U_B + \num{209 760} = 0 \hspace{5mm} /:8\]
+\[28 * U_A - 76 * U_B + 48 * U_C + 806,4 = 0 \hspace{5mm} /:4\]
+\[37 * U_B - 65 * U_C + 370,8 = 0\]
+
+\begin{center}
+    \line(1,0){350}
+\end{center}
+
+\[-765,5 * U_A + 237,5 * U_B = \num{-26 220}\]
+\[7 * U_A - 19 * U_B + 12 * U_C = -201,6\]
+\[37 * U_B - 65 * U_C = -310,8\]
+
+\vspace{1cm}
+\noindent
+Získali jsme tři rovnice o třech neznámých. Nyní si sestavíme maticovou rovnici:
+
+\begin{equation*}
+\begin{pmatrix}
+-765,5 & 237,5 & 0 \\
+7 & -19 & 12 \\
+0 & 37 & -65
+\end{pmatrix}
+*
+\begin{pmatrix}
+U_A \\
+U_B \\
+U_C
+\end{pmatrix}
+=
+\begin{pmatrix}
+\num{-26 220} \\
+-201,6 \\
+-310,8
+\end{pmatrix}
+\end{equation*}
+
+\noindent
+Dále si určíme hodnoty determinantů:
+
+\begin{equation*}
+|D| = 
+   \begin{vmatrix} 
+   -765,5 & 237,5 & 0  \\
+   7 & -19 & 12  \\
+   0 & 37 & -65  \\
+   \end{vmatrix} 
+=   
+\end{equation*}
+$= [-765.5 * (-19) * (-65)] + (7 * 37 * 0) + (0 * 237,5 * 12) -\\  
+- [0 * (-19) * 0] - [12 * 37 * (-765,5)] - (-65 * 237,5 * 7) =\\
+= \num{-945 392,5} + 0 + 0 + 0 + \num{339 882} + \num{108 062,5} =\\
+= \num{-497 448}$
+
+\begin{equation*}
+|D_1| = 
+   \begin{vmatrix} 
+   \num{-26 220} & 237,5 & 0  \\
+   -201,6 & -19 & 12  \\
+   -310,8 & 37 & -65  \\
+   \end{vmatrix} 
+=  
+\end{equation*}
+$= [\num{-26 220} * (-19) * (-65)] + (-201,6 * 37 * 0) + (-310,8 * 237,5 * 12) -\\
+- [0 * (-19) * (-310,8)] - [12 * 37 * (\num{-26 220})] - [-65 * 237,5 * (-201,6)] =\\
+= -\num{32 381 700} - \num{885 780} + \num{11 641 680} - \num{3 112 200} =\\
+= \num{-24 738 000}$ 
+
+\vspace{1cm}
+\noindent
+Vypočítáme si hodnotu napětí $U_A$:
+
+\[U_A = \frac{|D_1|}{|D|} = \frac{\num{-24 738 000}}{\num{-497 448}} = \SI{49,729821}{\volt}\]
+
+\noindent
+Hodnota napětí $U_{R_2}$ je stejná, jako hodnota napětí $U_A$, tedy:
+
+\[U_{R_2} = U_A = \SI{49,729 821}{\volt} \doteq \doubleunderline{\SI{49,729 8}{\volt}}\]
+
+\noindent
+Hodnotu proudu $I_{R_2}$ vypočítáme pomocí Ohmova zákona:
+
+\[I_{R_2} = \frac{U_A}{R_2} = \frac{\num{49,729 821}}{38} = \num{1,308 68} \doteq \doubleunderline{\SI{1,3087}{\ampere}}\]
+\newpage
+
+%Priklad 4
+\rhead{\bfseries Příklad 4}
+
+\section{Příklad 4 -- Metoda smyčkových proudů}
+\textbf{Zadání:} Pro napájecí napětí platí: $u_1 = U_1 * \sin{(2\pi ft)}$, $u_2 = U_2 * \sin{(2\pi ft)}$. \newline
+Ve vztahu pro napětí $u_{L_2} = U_{L_2} * \sin{(2\pi ft + \varphi_{L_2})}$ určete $|U_{L_2}|$ a $\varphi_{L_2}$. 
+Použijte metodu smyčkových proudů.
+\vspace{0.5cm}\newline
+Pozn: Pomocné směry šipek napájecích zdrojů platí pro speciání časový okamžik ($t = \frac{\pi}{2\omega}$).
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} 
+      \hline
+      %prvni radek
+       sk. & $U_1$ [\si{\volt}] & $U_2$ [\si{\volt}] & $R_1$ [\si{\ohm}]
+       & $R_2$ [\si{\ohm}] & $L_1$ [\si{mH}] & $L_2$ [\si{mH}]
+       & $C_1$ [\si{\mu F}] & $C_2$ [\si{\mu F}] & $f$ [\si{Hz}]\\
+       %druhy radek
+       \hline
+       H & 65 & 60 & 10 & 10 & 160 & 75 & 155 & 70 & 95\\
+     \hline
+    \end{tabular}
+    \caption{Zadané hodnoty}
+    \label{tab:4}
+  \end{center}
+ \end{table}
+
+%obvod 34
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[short, -*] (0,3)
+    to[R=$R_1$] (0,6)
+    to[vsourcesin, v^=$u_1$] (10,6) 
+    to[short, -*] (10,3)
+    to[vsourcesin, v=$u_2$] (10,0); 
+    
+    \draw
+    (0,0) to[cute inductor, l=$L_1$, -*] (5,0)
+    to[C, l=$C_2$] (10,0);
+    
+    \draw
+    (0,3) to[C, l=$C_1$, -*] (5,3)
+    (5,3) to[cute inductor, l=$L_2$, i<=$i_{L_2}$, v<=$u_{L_2}$] (10,3);
+    
+    \draw
+    (5,3) to[R=$R_2$] (5,0);
+    
+\end{circuitikz}
+\caption{Zadaný obvod}
+\end{center}
+\end{figure}
+
+\subsection{Výpočet úhlové frekvence}
+Nejprve si spočítáme úhlovou frekvenci:
+\[\omega = 2\pi f = 2 * 95 * \pi = 190\pi \frac{rad}{s}\]
+
+\newpage
+\subsection{Určení smyčkových proudů}
+Dále si určíme smyčkové proudy a jejich směr:
+
+%obvod 35
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[short, -*] (0,3)
+    to[R=$R_1$] (0,6)
+    to[vsourcesin, v^=$u_1$] (10,6) 
+    to[short, -*] (10,3)
+    to[vsourcesin, v=$u_2$] (10,0); 
+    
+    \draw
+    (0,0) to[cute inductor, l=$L_1$, -*] (5,0)
+    to[C, l=$C_2$] (10,0);
+    
+    \draw
+    (0,3) to[C, l=$C_1$, -*] (5,3)
+    (5,3) to[cute inductor, l=$L_2$, i<=$i_{L_2}$, v<=$u_{L_2}$] (10,3);
+    
+    \draw
+    (5,3) to[R=$R_2$] (5,0);
+    
+    \draw
+    [thin,<-,=triangle 45] (2.5,1.5)node{$i_B$}  ++(-60:0.5) arc (-60:170:0.5);
+    
+    \draw
+    [thin,<-,=triangle 45] (7.5,1.5)node{$i_C$}  ++(-60:0.5) arc (-60:170:0.5);
+    
+    \draw
+    [thin,<-,=triangle 45] (5,4.5)node{$i_A$}  ++(-60:0.5) arc (-60:170:0.5);
+    
+\end{circuitikz}
+\caption{Obvod s vyznačenými smyčkovými proudy}
+\end{center}
+\end{figure}
+
+\noindent
+Poté sestavíme rovnice pro jednotlivé smyčky:
+\[i_A: R_1 * I_A + Z_{L_2} * (I_A - I_C) + Z_{C_1} * (I_A - I_B) + U_1 = 0\]
+\[i_B: Z_{C_1} * (I_B - I_A) + R_2 * (I_B - I_C) + Z_{L_1} * I_B = 0\]
+\[i_C: Z_{C_2} * I_C + R_2 * (I_C - I_B) + Z_{L_2} * (I_C - I_A) + U_2 = 0\]
+
+\subsection{Sestavení maticové rovnice}
+Sestavíme maticovou rovnici:
+\begin{equation*}
+\begin{pmatrix}
+R_1 + Z_{L_2} + Z_{C_1} & -Z_{C_1} & -Z_{L_2} \\
+-Z_{C_1} & Z_{C_1} + R_2 + Z_{L_1} & -R_2 \\
+-Z_{L_2} & -R_2 & Z_{C_2} + R_2 + Z_{L_2}
+\end{pmatrix}
+*
+\begin{pmatrix}
+I_A \\
+I_B \\
+I_C
+\end{pmatrix}
+=
+\begin{pmatrix}
+-U_1 \\
+0 \\
+-U_2
+\end{pmatrix}
+\end{equation*}
+Dále dosadíme do maticové rovnice jednotlivé vztahy:
+
+\[X_C = \frac{1}{\omega C}\]
+\[X_L = \omega L\]
+
+\[Z_C = \frac{1}{j\omega C} = \frac{1}{j\omega C} * \left(\frac{-j}{-j}\right) = \frac{-j}{\omega C} = -jX_C\]
+\[Z_L = j\omega L = jX_L\]
+
+\begin{equation*}
+\begin{pmatrix}
+R_1 + j\omega L_2 + \frac{-j}{\omega C_1} & -\frac{-j}{\omega C_1} & -j\omega L_2 \\
+-\frac{-j}{\omega C_1} & \frac{-j}{\omega C_1} + R_2 + j\omega L_1 & -R_2 \\
+-j\omega L_2 & -R_2 & \frac{-j}{\omega C_2} + R_2 + j\omega L_2
+\end{pmatrix}
+*
+\begin{pmatrix}
+I_A \\
+I_B \\
+I_C
+\end{pmatrix}
+=
+\begin{pmatrix}
+-U_1 \\
+0 \\
+-U_2
+\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+\begin{pmatrix}
+R_1 + j\omega L_2 - \frac{j}{\omega C_1} & \frac{j}{\omega C_1} & -j\omega L_2 \\
+\frac{j}{\omega C_1} & \frac{-j}{\omega C_1} + R_2 + j\omega L_1 & -R_2 \\
+-j\omega L_2 & -R_2 & \frac{-j}{\omega C_2} + R_2 + j\omega L_2
+\end{pmatrix}
+*
+\begin{pmatrix}
+I_A \\
+I_B \\
+I_C
+\end{pmatrix}
+=
+\begin{pmatrix}
+-U_1 \\
+0 \\
+-U_2
+\end{pmatrix}
+\end{equation*}
+\newpage
+
+\noindent
+Poté dosadíme číselné hodnoty:
+\begin{equation*}
+\begin{pmatrix}
+10 + \num{33,959 21}j & \num{10,808 485}j & \num{-44,767 695}j\\
+\num{10,808 485}j & 10 + \num{84,695 932}j & -10\\
+ \num{-44,767 695}j & -10 & 10 + \num{20,834 621}j
+\end{pmatrix}
+*
+\begin{pmatrix}
+I_A \\
+I_B \\
+I_C
+\end{pmatrix}
+=
+\begin{pmatrix}
+-65 \\
+0 \\
+-60
+\end{pmatrix}
+\end{equation*}
+
+\vspace{1cm}
+\subsection{Určení hodnot determinantů a proudů $I_A$ a $I_C$}
+Nyní si určíme hodnoty jednotlivých determinantů:
+
+\begin{equation*}
+|D| = 
+    \begin{vmatrix} 
+        10 + \num{33,959 21}j & \num{10,808 485}j & \num{-44,767 695}j\\
+        \num{10,808 485}j & 10 + \num{84,695 932}j & -10\\
+        \num{-44,767 695}j & -10 & 10 + \num{20,834 621}j
+    \end{vmatrix} 
+=   
+\end{equation*}
+$= [( 10 + \num{33,959 21}j) * (10 + \num{84,695 932}j) * (10 + \num{20,834 621}j)] +\\
++ [(\num{10,808 485}j) * (-10) * (\num{-44,767 695}j)] +\\
++ [( \num{-44,767 695}j) * (\num{10,808 485}j) * (-10)] -\\  
+- [(\num{-44,767 695}j) * (10 + \num{84,695 932}j) * (\num{-44,767 695}j)] -\\
+- [(-10) * (-10) * (10 + \num{33,959 21}j)] -\\
+- [(10 + \num{20,834 621}j) * (\num{10,808 485}j) * (\num{10,808 485}j)] =\\
+= \underline{\num{-41 951,139 104} + \num{122 805,400 952}j}$
+
+\vspace{1cm}
+\begin{equation*}
+|D_A| = 
+    \begin{vmatrix} 
+        -65 & \num{10,808 485}j & \num{-44,767 695}j\\
+        0 & 10 + \num{84,695 932}j & -10\\
+        -60 & -10 & 10 + \num{20,834 621}j
+    \end{vmatrix} 
+=   
+\end{equation*}
+$= [(-65) * (10 + \num{84,695 932}j) * (10 + \num{20,834 621}j)] +\\
++ [(0) * (-10) * (\num{-44,767 695}j)] +\\
++ [(-60) * (\num{10,808 485}j) * (-10)] -\\  
+- [(\num{-44,767 695}j) * (10 + \num{84,695 932}j) * (-60)] -\\
+- [(-10) * (-10) * (-65)] -\\
+- [(10 + \num{20,834 621}j) * (\num{10,808 485}j) * (0)] =\\
+= \underline{\num{342 197,995 913} - \num{88 970,385 45}j}$
+
+\vspace{1cm}
+\begin{equation*}
+|D_C| = 
+    \begin{vmatrix} 
+        10 + \num{33,959 21}j & \num{10,808 485}j & -65\\
+        \num{10,808 485}j & 10 + \num{84,695 932}j & 0\\
+        \num{-44,767 695}j & -10 & -60
+    \end{vmatrix} 
+=   
+\end{equation*}
+$= [( 10 + \num{33,959 21}j) * (10 + \num{84,695 932}j) * (-60)] +\\
++ [(\num{10,808 485}j) * (-10) * (-65)] +\\
++ [( \num{-44,767 695}j) * (\num{10,808 485}j) * (0)] -\\  
+- [(-65) * (10 + \num{84,695 932}j) * (\num{-44,767 695}j)] -\\
+- [(0) * (-10) * (10 + \num{33,959 21}j)] -\\
+- [(-60) * (\num{10,808 485}j) * (\num{10,808 485}j)] =\\
+= \underline{\num{406 019,722 925} - \num{93 266,571 7}j}$
+
+\[I_A = \frac{|D_A|}{|D|} = \frac{\num{342 197,995 913} - \num{88 970,385 45}j}{\num{-41 951,139 104} + \num{122 805,400 952}j} = \num{-1,501 19} - \num{2,273 69}j\si{\ampere}\]
+\[I_C = \frac{|D_C|}{|D|} = \frac{\num{406 019,722 925} - \num{93 266,571 7}j}{\num{-41 951,139 104} + \num{122 805,400 952}j} = \num{-1,691 498} - \num{2,728 377}j\si{\ampere}\]
+
+\newpage
+\subsection{Výpočet $|U_{L_2}|$ a $\varphi_{L_2}$}
+Nejprve vypočítáme hodnotu proudu $I_{L_2}$:
+\[I_{L_2} = I_A - I_C = (\num{-1,501 19} - \num{2,273 69}j) - (\num{-1,691 498} - \num{2,728 377}j) = \num{0,190 308} + \num{0,454 687}j\si{\ampere}\]
+\newline
+Dále vypočítáme hodnotu napětí $U_{L_2}$:
+\[U_{L_2} = I_{L_2} * Z_{L_2} = (\num{0,190 308} + \num{0,454 687}j) * (\num{44,767 695}j) = \num{-20,355 289} + \num{8,519 651}j\si{\volt}\]
+\newline
+Nyní již můžeme vypočítat hodnotu $|U_{L_2}|$ (amplituda napětí na cívce $L_2$):
+\[|U_{L_2}| = \sqrt{(\num{-20,355 289})^2 + (\num{8,519 651})^2} = \num{22,066 314} \doteq \doubleunderline{\SI{22,0663}{\volt}}\]
+\newline
+Nakonec vypočítáme fázový posuv $\varphi_{L_2}$:
+\[\varphi_{L_2} = \arctan{\left( \frac{im(U_{L_2})}{re(U_{L_2})}\right)} = \arctan{\left( \frac{\num{8,519 651}}{\num{-20,355 289}}\right)} = \num{-0,396 392} \doteq \doubleunderline{\SI{-0,3964}{rad}}\]
+\newpage
+
+%Priklad 5
+\rhead{\bfseries Příklad 5}
+
+\section{Příklad 5 -- Diferenciální rovnice}
+\textbf{Zadání:} V obvodu na obrázku níže v čase $t = 0[s]$ sepne spínač S. Sestavte diferenciální rovnici popisující chování obvodu na obrázku, 
+dále ji upravte dosazením hodnot parametrů. Vypočítejte analytické řešení $i_L = f(t)$. 
+Proveďte kontrolu výpočtu dosazením do sestavené diferenciální rovnice. 
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} 
+      \hline
+      %prvni radek
+       sk. & $U$ [\si{\volt}] & $L$ [\si{H}] & $R$ [\si{\ohm}] & $i_L(0)$ [\si{\ampere}]\\
+       %druhy radek
+       \hline
+       E & 40 & 30 & 40 & 11\\
+     \hline
+    \end{tabular}
+    \caption{Zadané hodnoty}
+    \label{tab:5}
+  \end{center}
+ \end{table}
+ 
+%obvod 36
+\begin{figure}[ht!]
+\begin{center}
+\begin{circuitikz}
+    \draw
+    (0,0) to[dcvsource, v^<=$U$] ++(0,2.5)
+    to[cosw, l=$S$] (0,5)
+    to[R=$R$] (4,5)
+    to[cute inductor, l=$L$, i=$i_L$] (4,0) -- (0,0);
+     
+    \draw
+    node (A) at (-0.6,4.1) {}
+    node (B) at (0.07,4.1) {}
+     [thin,->,=triangle 45] (A) to[bend left] (B);
+   
+    \draw
+    node (A) at (-0.6,4.5) {\small $t = 0s$};
+    
+\end{circuitikz}
+\caption{Zadaný obvod}
+\end{center}
+\end{figure}
+
+\subsection{Sestavení diferenciální rovnice prvního řádu}
+Nejprve si vyjádříme vztahy platicí v zadaném obvodu:
+\[i_L = \frac{u_R}{R} \hspace{1cm} \left(i = i_L = i_R\right)\]
+\[u_R + u_L - U = 0\]
+\[i'_L = \frac{u_L}{L}\]
+\newline
+Dále si zavedeme počáteční podmínku:
+\[i_L(0) = 11 \si{\ampere}\]
+\newline
+Nyní využijeme vyjádřené vztahy a sestavíme si diferenciální rovnici prvního řádu pro $i'_L$:
+\[Ri_L +  Li'_L = U\]
+\[i'_L = \frac{1}{L} * \left( U - Ri_L \right)\] 
+
+\newpage
+\subsection{Analytické řešení}
+Očekávané řešení:
+\[i_L(t) = K(t) * e^{\lambda t}\]
+\newline 
+Řešíme charakteristické rovnice ($i'_L = \lambda$, $i_L = 1$):
+\[R + L\lambda = 0\]
+\[\lambda = -\frac{R}{L} = -\frac{4}{3}\]
+\newline
+Dosadíme $\lambda$ do očekávaného řešení:
+\[i_L(t) = K(t) * e^{\lambda t}\]
+\[i_L(t) = K(t) * e^{-\frac{R}{L}t}\]
+\newline
+Dále provedeme derivaci získané rovnice:
+\[i'_L = K'(t) * e^{-\frac{R}{L}t} + K(t) * \left( -\frac{R}{L} \right) *  e^{-\frac{R}{L}t}\]
+\newline
+Nyní dosadíme získané rovnice do námi sestavené diferenciální rovnice:
+\[Ri_L +  Li'_L = U\]
+\[R *  K(t) * e^{-\frac{R}{L}t} +  L * \left(  K'(t) * e^{-\frac{R}{L}t} + K(t) * \left( -\frac{R}{L} \right) *  e^{-\frac{R}{L}t} \right) = U\]
+\[R *  K(t) * e^{-\frac{R}{L}t} +  L * K'(t) * e^{-\frac{R}{L}t} + L * K(t) * \left( -\frac{R}{L} \right) *  e^{-\frac{R}{L}t} = U\]
+\[R *  K(t) * e^{-\frac{R}{L}t} +  L * K'(t) * e^{-\frac{R}{L}t} - R * K(t) * e^{-\frac{R}{L}t} = U\]
+\[L * K'(t) * e^{-\frac{R}{L}t} = U\]
+\[K'(t) * e^{-\frac{R}{L}t} = \frac{U}{L}\]
+\[K'(t) = \frac{U}{L} * e^{\frac{R}{L}t}\]
+\newline
+Nyní známe $K'(t)$. Potřebujeme však zjistit $K(t)$, proto rovnici zintegrujeme:
+\[K(t) =\int \frac{U}{L} * e^{\frac{R}{L}t} dt\]
+\[K(t) = \frac{U * e^{\frac{R}{L}t}}{R} + k\]
+\newline
+Dosadíme $K(t)$ do očekávaného řešení:
+\[i_L(t) = \left( \frac{U * e^{\frac{R}{L}t}}{R} + k \right) * e^{\lambda t}\]
+\begin{equation}
+    \label{eq:rovnice}
+    i_L(t) = \frac{U}{R} + k * e^{-\frac{R}{L}t}
+\end{equation}
+\newpage
+\noindent
+Dále dosadíme počáteční podmínku $i_L(0) = 11\si{\ampere}$:
+\[11 = \frac{U}{R} + k * e^{-\frac{R}{L}0}\]
+\[11 = \frac{U}{R} + k\]
+\[k = 11 - \frac{U}{R}\]
+Dosadíme k do rovnice (\ref{eq:rovnice}):
+\[i_L(t) = \frac{U}{R} + k * e^{-\frac{R}{L}t}\]
+\[i_L(t) = \frac{U}{R} + \left(11 - \frac{U}{R}\right) * e^{-\frac{R}{L}t}\]
+\newline
+Nyní dosadíme číselné hodnoty:
+\[i_L(t) = \frac{40}{40} + \left(11 - \frac{40}{40}\right) * e^{-\frac{40}{30}t}\]
+\newline
+Hledaná rovnice tedy je:
+\[i_L(t) = 1 + 10 * e^{-\frac{4}{3}t}\]
+
+\vspace{1cm}
+\subsection{Zkouška}
+\begin{enumerate}[label=\alph*)]
+    \item 
+    \[t = 0s: \hspace{1cm} i_L(0) = \frac{U}{R} + 11 - \frac{U}{R} = 11\]
+    
+    \item
+    Dosadíme $i_L$ a $i'_L$ do diferenciální rovnice prvního řádu a upravíme:
+    \[Ri_L +  Li'_L = U\]
+    \[i_L(t) = \frac{U}{R} + \left(11 - \frac{U}{R}\right) * e^{-\frac{R}{L}t}\]
+    \[i'_L(t) = -\left(11 - \frac{U}{R}\right) * \frac{R}{L} * e^{-\frac{R}{L}t}\]
+    \vspace{1cm}
+    \[R * \left[ \frac{U}{R} + \left(11 - \frac{U}{R}\right) * e^{-\frac{R}{L}t} \right] +  L * \left[ -\left(11 - \frac{U}{R}\right) * \frac{R}{L} * e^{-\frac{R}{L}t} \right] = U\]
+    \[U + R * \left(11 - \frac{U}{R}\right) * e^{-\frac{R}{L}t} - R * \left(11 - \frac{U}{R}\right) * e^{-\frac{R}{L}t} = U\]
+    \[U = U\]
+    \[0 = 0\]
+\end{enumerate}
+
+\newpage
+%Priklad 5
+\rhead{\bfseries Výsledky}
+
+\section{Výsledky}
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular}{|c|c|c|} 
+      \hline
+      %prvni radek
+       Příklad & Varianta zadání & Výsledek\\
+       \hline
+       
+       \multirow[t]{2}{*}{1} & H & $I_{R_6} = \SI{0,0821}{\ampere}$\\
+        & & $U_{R_6} = \SI{71,4187}{\volt}$\\ 
+        
+       %{$$I_{R_6} = \SI{0,0821}{\ampere}$$ \\ $$U_{R_6} = \SI{71,4187}{\volt}$$}\\
+       \hline
+       \multirow[t]{2}{*}{2} & E & $I_{R_3} = \SI{0,1577}{\ampere}$\\
+        & & $U_{R_3} = \SI{98,5636}{\volt}$ \\ 
+       \hline
+       \multirow[t]{2}{*}{3} & D & $I_{R_2} = \SI{1,3087}{\ampere}$\\
+        & & $U_{R_2} = \SI{49,729 8}{\volt}$ \\ 
+       \hline
+       \multirow[t]{2}{*}{4} & H & $|U_{L_2}| = \SI{22,0663}{\volt}$\\
+        & & $\varphi_{L_2} = \SI{-0,3964}{rad}$ \\ 
+       \hline
+       \multirow[t]{2}{*}{5} & E & $i_L(t) = 1 + 10 * e^{-\frac{4}{3}t}$\\
+        & & \\ 
+     \hline
+    \end{tabular}
+    \caption{Tabulka s výsledky}
+    \label{tab:6}
+  \end{center}
+ \end{table}
+\end{document}

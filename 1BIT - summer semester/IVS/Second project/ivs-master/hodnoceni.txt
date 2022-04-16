@@ -1,0 +1,4 @@
+xchoch09 100 (profiling, Makefile)
+xbakaj00 100 (testy, instalátor)
+xkanko00 100 (GUI, mockup)
+xbalaz15 100 (dokumentace, matematická knihovna)

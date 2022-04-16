@@ -1,0 +1,188 @@
+Tým Segmentation Fault - Předběžný plán projektu
+------------------------------------------------
+------------------------------------------------
+
+Členové týmu:
+- David Chocholatý (vedoucí týmu)
+	- login: xchoch09
+	- GitLab profil: david_chocholaty
+	- E-mail: xchoch09@stud.fit.vutbr.cz
+	
+- Štěpán Bakaj
+	- login: xbakaj00
+	- GitLab profil: bakajstep 	
+	- E-mail: xbakaj00@stud.fit.vutbr.cz
+		
+- Adam Kaňkovský
+	- login: xkanko00
+	- GitLab profil: adamkankovsky	 
+	- E-mail: xkanko00@stud.fit.vutbr.cz
+		
+- Martin Baláž
+	- login: xbalaz15
+	- GitLab profil: balalek
+	- E-mail: xbalaz15@stud.fit.vutbr.cz
+
+
+------------------------------------------------
+
+Komunikační kanály:
+- Facebook - domluva termínů
+- Discord - komunikace ohledně práce na projektu
+
+Stanovená pravidla pro komunikaci:
+1) Pro komunikaci 2 osob pracujících na projektu bude využita aplikace Discord.
+2) Každý člen týmu, který zrovna pracuje na nějakém úkolu na projektu, by měl být při práci online na aplikaci Discord.
+3) Na začátku každého týdne bude probíhat sezení celého týmu. Domluva termínu sezení bude probíhat minimálně dva dny dopředu.
+4) Všichni členové týmu jsou povinni každý den provádět kontrolu komunikačních kanálů (Facebook a Discord).
+
+
+------------------------------------------------
+
+Systém pro správu verzí:
+- GitLab
+	- Název projektu: IVS_Projekt
+	- Project ID: 24382157
+	- Project URL: https://gitlab.com/vutkamosi/ivs_projekt
+	- Oprávnění bylo přiděleno uživateli ivskontrola (e-mail: ivs.kontrola@gmail.com).
+	- Oprávnění přidělil uživatel bakajstep (Štěpán Bakaj), který je v roli vlastníka projektu (Owner) v aplikaci GitLab.
+	- Uživatel ivskontrola přijal toto oprávnění 13. 3. 2021, 12:13 GMT+0100.
+
+
+------------------------------------------------
+
+Přidělení úkolů na projektu jednotlivým řešitelům:
+
+Testy pro matematickou knihovnu
+- Adam Kaňkovský
+- Štěpán Bakaj
+
+Knihovna s matematickými funkcemi
+- David Chocholatý
+- Martin Baláž
+
+Grafické uživatelské rozhraní
+- Adam Kaňkovský
+- Štěpán Bakaj
+
+Profiling
+- David Chocholatý
+- Martin Baláž
+______________________________
+
+Makefile
+- David Chocholatý
+- Martin Baláž
+
+Instalátor
+- Adam Kaňkovský
+- Štěpán Bakaj
+_______________________________
+
+Programová dokumentace
+- všichni členové týmu
+
+Uživatelská dokumentace
+- David Chocholatý
+- Martin Baláž
+
+Nápověda
+- Adam Kaňkovský
+- Štěpán Bakaj
+
+Návod pro manuální instalaci a odinstalaci
+- všichni členové týmu
+_______________________________
+
+Mockup
+- všichni členové týmu
+
+Testování produktu
+- všichni členové týmu
+_______________________________
+
+Vytvoření souborů:
+
+Snímek obrazovky programu
+- Martin Baláž
+
+Snímek obrazovky debuggeru
+- David Chocholatý
+
+Soubor README.md
+- Štěpán Bakaj
+- Adam Kaňkovský
+
+Soubor .editorconfig
+- David Chocholatý
+- Štěpán Bakaj
+
+Soubor skutecnost.txt
+- všichni členové týmu
+
+Soubor hodnocení.txt
+- všichni členové týmu
+
+Soubor odevzdani.txt
+- David Chocholatý
+
+Soubor .gitignore
+- Adam Kaňkovský
+- Martin Baláž
+
+
+------------------------------------------------
+
+Stanovené termíny:
+
+22. 3. 2021 - 28. 3. 2021
+_______________________________
+- Soubor .editorconfig
+- Soubor .gitignore
+- Soubor README.md
+- Testy pro matematickou knihovnu
+
+
+29. 3. 2021 - 4. 4. 2021
+_______________________________
+- Testy pro matematickou knihovnu
+- Knihovna s matematickými funkcemi
+- Grafické uživatelské rozhraní
+
+
+5. 4. 2021 - 12. 4. 2021
+_______________________________
+- Knihovna s matematickými funkcemi
+- Grafické uživatelské rozhraní
+- Nápověda
+- Profiling
+- Programová dokumentace
+
+
+12. 4. 2021 - 18. 4. 2021
+_______________________________
+- Profiling
+- Programová dokumentace
+- Uživatelská dokumentace
+- Makefile
+- Instalátor
+
+
+19. 4. 2021 - 25.4. 2021
+_______________________________
+- Programová dokumentace
+- Uživatelská dokumentace
+- Makefile
+- Instalátor
+- Návod pro manuální instalaci a odinstalaci
+- Mockup
+- Testování produktu
+
+
+26. 4. 2021 - 28. 4. 2021
+_______________________________
+- Uživatelská dokumentace
+- Návod pro manuální instalaci a odinstalaci
+- Mockup
+- Testování produktu
+

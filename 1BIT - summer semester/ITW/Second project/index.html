@@ -1,0 +1,253 @@
+<!--
+    - Soubor: index.html
+    - Popis: Hlavni HTML dokument webove stranky.
+    - Datum: 2021-03-26
+    - Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+    - Verze: 1.0
+    - Projekt: Projekt 2, predmet ITW
+-->
+<!doctype html>
+<!--
+    Nastaveni lang na "zxx" z duvodu pouziti textu Lorem ipsum.
+    Pri zmene vygenerovaneho textu za bezny text v anglictine
+    bude tato hodnota nastavena na lang="en".
+-->
+<html lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>David Chocholaty</title>      
+
+        <!-- Import fontu -->          
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"> 
+        <!-- Import ikon -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">  
+        <link rel="stylesheet" href="./font-mfizz/font-mfizz.css">
+
+        <!-- Import stylovych predpisu css -->
+
+        <!-- Sekce webu -->
+        <link rel="stylesheet" href="./css/main.css">       
+        <link rel="stylesheet" href="./css/menu.css">      
+        <link rel="stylesheet" href="./css/home.css">              
+        <link rel="stylesheet" href="./css/about.css"> 
+        <link rel="stylesheet" href="./css/education.css"> 
+        <link rel="stylesheet" href="./css/skills.css"> 
+        <link rel="stylesheet" href="./css/hobbies.css"> 
+        <link rel="stylesheet" href="./css/books.css"> 
+        <link rel="stylesheet" href="./css/footer.css"> 
+        
+        <!-- Dodatecne css predpisy -->
+        <link rel="stylesheet" href="./css/animation.css">  
+        <link rel="stylesheet" href="./css/scroll_animation.css">  
+
+    </head>
+    <body class="body">    
+
+        <!-- Menu a sekce Home -->            
+        <header id="home">           
+            <div id="container">     
+                <div id="title">
+                    <h1>Hey, I'm</h1>
+                    <!-- Pri zmene umisteni webovych stranek bude prepsana hodnota href. -->
+                    <h1 id="name"><a href="http://www.stud.fit.vutbr.cz/~xchoch09/">David Chocholatý</a></h1>                    
+                </div>  
+                <div id="sticky-menu" class="navigation">
+                    <div class="ham-btn" onclick="switchNav()">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div class="links">
+                      <div class="link" onclick="switchNav()"><a href="#home">Home</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#about-sec">About</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#edu-sec">Education</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#skills-sec">Skills</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#hobbies-sec">Hobbies</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#books-sec">Books</a></div>
+                      <div class="link" onclick="switchNav()"><a href="#contact-sec">Contact</a></div>
+                    </div>
+                </div>                                         
+            </div>  
+        </header>                                              
+        <div class="arrow">            
+            <span></span>
+            <span></span>  
+        </div>
+
+        <!-- Sekce About -->
+        <section id="about-sec">
+            <div class="about">                             
+                <div id="about-fst-col" class="column js-scroll slide-left">
+                    <img src="./images/about.jpg" alt="David Chocholaty picture">
+                </div>              
+                <div id="about-sec-col" class="column js-scroll slide-right">                
+                    <h2>About</h2> 
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam ornare wisi eu metus. Nullam dapibus fermentum ipsum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quisque porta. Mauris metus. Sed convallis magna eu sem. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit.                    
+                    </p>    
+                </div>                  
+            </div>   
+        </section>        
+        
+        <!-- Sekce Education -->
+        <section id="edu-sec">
+            <div class="education">                             
+                <div id="edu-fst-col" class="column js-scroll slide-right">
+                    <img src="./images/fit.jpg" alt="Faculty of Information Technology BUT">
+                </div>              
+                <div id="edu-sec-col" class="column js-scroll slide-left">                
+                    <h2>Education</h2> 
+                    <div class="edu-item">
+                        <h3>SŠ PTA Jihlava, Information Technology</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                        </p>    
+                    </div>     
+                    <div class="edu-item">
+                        <h3>Faculty of Information Technology BUT</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                        </p>    
+                    </div>     
+                    <div class="edu-item">
+                        <h3>Elementary Art School Polná</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                        </p>    
+                    </div>                
+                </div>                  
+            </div>    
+        </section>        
+        
+        <!-- Sekce Skills -->
+        <section id="skills-sec">
+            <div class="skills">                                                      
+                <div>                
+                    <h2 id="skills-title" class="js-scroll fade-in">Skills</h2> 
+                    <p id="skills-par" class="js-scroll fade-in-bottom">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam ornare wisi eu metus. Nullam dapibus fermentum ipsum. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quisque porta. Mauris metus. Sed convallis magna eu sem. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit.                    
+                    </p>                    
+                </div>
+                <div class="code-langs">
+                    <i id="icon-1" class="fab fa-html5 js-scroll fade-in"></i>
+                    <i id="icon-2" class="fab fa-css3-alt js-scroll fade-in"></i>
+                    <i id="icon-3" class="fab fa-js-square js-scroll fade-in"></i>
+                    <i id="icon-4" class="icon-c js-scroll fade-in"></i>
+                    <i id="icon-5" class="icon-cplusplus js-scroll fade-in"></i>
+                    <i id="icon-6" class="fab fa-python js-scroll fade-in"></i>
+                    <i id="icon-7" class="fab fa-java js-scroll fade-in"></i>
+                    <i id="icon-8" class="fab fa-php js-scroll fade-in"></i>
+                    <i id="icon-9" class="icon-mysql js-scroll fade-in"></i> 
+                    <i id="icon-10" class="fab fa-git-alt js-scroll fade-in"></i>
+                    <i id="icon-11" class="fas fa-terminal js-scroll fade-in"></i>
+                    <i id="icon-12" class="icon-script js-scroll fade-in"></i>
+                    <i id="icon-13" class="icon-ubuntu js-scroll fade-in"></i>
+                </div>                  
+            </div>       
+        </section>
+
+        <!-- Sekce Hobbies -->
+        <section id="hobbies-sec">
+            <div class="hobbies">                                         
+                <div>                
+                    <h2 id="hobbies-title" class="js-scroll fade-in">Hobbies</h2> 
+                    <div class="hobbies-links">
+                        <div class="link js-scroll fade-in-bottom"><span><a href="#hobby-fst">Bass</a></span></div>
+                        <div class="link js-scroll fade-in-bottom"><span><a href="#hobby-sec">Band</a></span></div>
+                        <div class="link js-scroll fade-in-bottom"><span><a href="#hobby-trd">Coding</a></span></div>
+                        <div class="link js-scroll fade-in-bottom"><span><a href="#hobby-fth">Fishing</a></span></div>                        
+                    </div>   
+                    <div id="hobby-fst" class="hobby">
+                        <div id="fst-col-fst" class="column js-scroll slide-left">
+                            <img src="./images/bass.jpg" alt="Bass picture">
+                        </div>     
+                        <div id="fst-col-sec" class="column js-scroll slide-right">
+                            <h3>Bass</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                            </p>    
+                        </div>                             
+                    </div>                        
+                    <div id="hobby-sec" class="hobby">
+                        <div id="sec-col-fst" class="column js-scroll slide-right">
+                            <img src="./images/band.jpg" alt="Band picture">
+                        </div>     
+                        <div id="sec-col-sec" class="column js-scroll slide-left">
+                            <h3>Band</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                            </p>    
+                        </div>                             
+                    </div>   
+                    <div id="hobby-trd" class="hobby">
+                        <div id="trd-col-fst" class="column js-scroll slide-left">
+                            <img src="./images/coding.jpg" alt="Coding picture">
+                        </div>     
+                        <div id="trd-col-sec" class="column js-scroll slide-right">
+                            <h3>Coding</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                            </p>    
+                        </div>                             
+                    </div>    
+                    
+                    <div id="hobby-fth" class="hobby">
+                        <div id="fth-col-fst" class="column js-scroll slide-right">
+                            <img src="./images/fishing.jpg" alt="Fishing picture">
+                        </div>     
+                        <div id="fth-col-sec" class="column js-scroll slide-left">
+                            <h3>Fishing</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor. Vivamus ac leo pretium faucibus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam posuere lacus quis dolor.
+                            </p>    
+                        </div>                             
+                    </div>   
+                </div>                  
+            </div>   
+        </section>   
+        
+        <!-- Sekce Books -->        
+        <section id="books-sec">
+            <div class="books">                                                                                    
+                <h2 id="books-title" class="js-scroll fade-in">Top 5 Books</h2>   
+                <i class="fas fa-book"></i>              
+                <ul>                    
+                    <li class="js-scroll fade-in-bottom">How to Win Friends and Influence People - Dale Carnegie</li>                    
+                    <li class="js-scroll fade-in-bottom">How to Stop Worrying and Start Living - Dale Carnegie</li>
+                    <li class="js-scroll fade-in-bottom">Steve Jobs - Walter Isaacson</li>
+                    <li class="js-scroll fade-in-bottom">The Power of Habit - Charles Duhigg</li>
+                    <li class="js-scroll fade-in-bottom">The 4-Hour Workweek - Timothy Ferriss</li>                    
+                </ul>                           
+            </div>       
+        </section>
+        <!-- Paticka -->
+        <footer>
+            <h2 class="js-scroll fade-in">Thank you for visiting my website <i class="far fa-smile-beam"></i></h2>            
+            <div class="footer-links">
+                <div class="link js-scroll fade-in-bottom"><a href="#home">Home</a></div>
+                <div class="link js-scroll fade-in-bottom"><a href="#about-sec">About</a></div>
+                <div class="link js-scroll fade-in-bottom"><a href="#edu-sec">Education</a></div>
+                <div class="link js-scroll fade-in-bottom"><a href="#skills-sec">Skills</a></div>
+                <div class="link js-scroll fade-in-bottom"><a href="#hobbies-sec">Hobbies</a></div>
+                <div class="link js-scroll fade-in-bottom"><a href="#books-sec">Books</a></div>
+            </div>            
+            <h3 class="js-scroll fade-in">Contact me <i id="phone" class="icon-mobile-device"></i></h3>                
+            <div id="contact-sec" class="contact">
+                <a href="https://www.facebook.com/" target="_blank" class="fab fa-facebook js-scroll fade-in-bottom"></a>
+                <a href="https://www.youtube.com/" target="_blank" class="fab fa-youtube js-scroll fade-in-bottom"></a>
+                <a href="mailto:myemail@gmail.com" target="_blank" class="fas fa-envelope js-scroll fade-in-bottom"></a>                
+            </div>    
+            <h4 id="copyright" class="js-scroll fade-in"><i class="far fa-copyright"></i> 2021 David Chocholatý. Used for educational purposes only.</h4>
+        </footer>
+
+        <!-- Import javascriptovych souboru -->
+        <script src="./js/menu.js"></script>                       
+        <script src="./js/scroll_animation.js"></script>  
+        <script src="./js/smooth_scroll.js"></script>
+    </body>
+</html>
+
+<!-- Konec souboru index.html -->

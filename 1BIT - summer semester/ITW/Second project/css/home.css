@@ -1,0 +1,94 @@
+/*
+ * Soubor: home.css
+ * Popis: Stylovy predpis pro hlavni domovskou sekci webove stranky.
+ * Datum: 2021-03-31
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+
+/*
+ * Obrazek na pozadi.
+ */
+#container {        
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url("../images/home.jpg");        
+    background-color: #1a1a1a;    
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    background-position: top;    
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;        
+    animation: fade-in 1.25s ease-in-out;            
+}
+
+/*
+ * Hlavni text (nadpis) sekce home.
+ */
+#title {
+    text-align: center;
+    position: absolute;
+    /*Pozicovani nadpisu na stred.*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;        
+}
+
+#title:first-child {
+    animation: fade-in 5s ease-in-out both;
+}
+
+/*
+ * Jmeno obsazene v hlavnim textu (nadpisu).
+ */
+#name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.2rem;        
+    text-shadow: 1.5px 1.5px #1a1a1a;
+    animation: fade-in 4s ease-in-out both;    
+}
+
+#name > a {
+    text-decoration: none;
+    color: #fff;   
+}
+
+/*----------------- Animovane sipky -----------------*/
+/*
+ * Nastaveni pozice sipek. 
+ */
+.arrow{
+    position: absolute;    
+    top: 80%;
+    left: 50%;    
+    transform: translate(-50%,-50%);
+    animation: fade-in 2s ease-in-out both;
+}
+
+/*
+ * Nastaveni vlastnosti sipek:
+ * - velikost 
+ * - barva
+ * - animace
+ */
+.arrow span{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-bottom: 5px solid #fff;
+    border-right: 5px solid #fff;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate-arrow 2s infinite;
+}
+
+/*
+ * Nastaveni efektu zpozdeni druhe sipky.
+ */ 
+.arrow span:nth-child(2){
+    animation-delay: -0.2s;
+}
+
+/*-------------- Konec souboru home.css -------------*/

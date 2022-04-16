@@ -1,0 +1,202 @@
+/*
+ * Soubor: menu.css
+ * Popis: Stylovy predpis pro menu webove stranky.
+ * Datum: 2021-03-31
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+ 
+ /*------------ Menu pro mobilni zarizeni ------------*/ 
+
+ /*
+  * Zakladni nastaveni menu:
+  * - pozice
+  * - velikost
+  * - barva pozadi
+  * - tvar
+  * - efekt zpozdeni
+  */
+.navigation {        
+    position: fixed;    
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    z-index: 200;
+    clip-path: circle(25px at calc(100% - 45px) 45px);
+    transition: all 500ms ease-in-out;
+    animation: fade-in 3s ease-in-out both;    
+}
+
+/*
+ * Zmena velikosti tvaru - efekt pri otevreni menu.
+ */
+.navigation.active {
+    clip-path: circle(75%);
+}
+
+ /*---- Nastaveni hamburger menu ----*/  
+.navigation .ham-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navigation .ham-btn span {    
+    position: absolute;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 2px;
+    background: #f5f5f5;
+    transition: all 200ms ease-in-out;
+}
+
+/* Nastaveni pozice jednotlivych linii menu */
+.navigation .ham-btn span:nth-child(1) {
+    top: 30%;
+}
+
+.navigation .ham-btn span:nth-child(2) {
+    top: 50%;
+}
+
+.navigation .ham-btn span:nth-child(3) {
+    top: 70%;
+}
+
+/* Zmena pri otevreni menu na krizek */
+
+/*
+ * Rotace prvni linie.
+ */
+.navigation.active .ham-btn span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/*
+ * Zakazani zobrazeni druhe linie.
+ */
+.navigation.active .ham-btn span:nth-child(2) {
+    display: none;
+}
+
+/*
+ * Rotace treti linie.
+ */
+.navigation.active .ham-btn span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+/*---- Konec nastaveni hamburger menu ----*/
+
+.navigation .links {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.navigation .links a {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+/*
+ * Nastaveni efektu podtrzeni polozky menu.
+ */
+.navigation .links a:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: -5px;
+    height: 2px;
+    width: 0%;
+    background: #e1a876;
+    transition: all 300ms ease-in-out;
+}
+
+.navigation .links a:hover:after {
+    width: 100%;
+}
+
+/*
+ * Uzamknuti scrollovani pri otevrenem menu na mobilnim zarizeni.
+ */
+.fixed-position {
+    overflow: hidden;
+}
+
+/*----------------- Menu pro desktop ----------------*/
+
+@media all and (min-width: 960px) {    
+    .navigation {
+        height: unset;
+        background: unset;        
+        clip-path: unset;        
+        width: 100%;
+        transition: 250ms;
+        padding: 2rem 0;
+    }
+
+    .ham-btn {
+        display: none;
+    }
+
+    .navigation .links {
+        position: unset;
+        top: unset;
+        left: unset;
+        transform: unset;                
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .navigation .links a {
+        display: unset;
+        font-size: 14px;
+        font-weight: unset;
+        text-transform: uppercase;        
+        margin: 0 3vw;
+        letter-spacing: 2.5px;
+    }
+
+    /*
+     * Prenastaveni vlastnosti menu pri scroll z vychozi pozice.
+     */     
+    .sticky {
+        padding: unset;
+        padding: 1.25rem 0;
+        background-color: #f5f5f5;
+        transition: 500ms;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+                    0 2px 4px rgba(0, 0, 0, 0.07),
+                    0 4px 8px rgba(0, 0, 0, 0.07),
+                    0 8px 16px rgba(0, 0, 0, 0.07),
+                    0 16px 32px rgba(0, 0, 0, 0.07),
+                    0 32px 64px rgba(0, 0, 0, 0.07);
+    }
+
+    .sticky .links a {
+        color: #1a1a1a;
+    }
+}
+
+/*-------------- Konec souboru menu.css -------------*/

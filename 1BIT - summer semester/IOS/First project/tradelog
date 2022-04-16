@@ -1,0 +1,325 @@
+#!/bin/sh
+
+# Soubor: tradelog
+# Datum vytvoreni: 16.03.2021
+# Datum posledni zmeny: 05.04.2021
+# Autor: David Chocholaty, xchoch09@stud.fit.vutbr.cz
+# Projekt: IOS, Projekt 1
+# Popis: Skript provadejici analyzu zaznamu systemu pro obchodovani na burze.
+
+export POSIXLY_CORRECT=yes
+export LC_ALL="C"
+
+# Argumenty filtru.
+datetime_after=""
+datetime_before=""
+ticker=""
+width=0
+
+err_msg="" # Ulozeni chybove zpravy.
+help=false # Nastaveni vypisu help.
+argument="" # Uchovani vysledneho prikazu.
+command="" # Nazev externiho prikazu (na vstupu).
+
+display_usage()
+{		
+	echo "Usage: tradelog [-h|--help] [FILTER] [COMMAND] [LOG [LOG2 [...]]"
+	echo "\nWith no LOG files, read standard input."
+	echo "\nCommand (can use only one):"	
+	echo "  list-tick \t  listing of occurring stock exchange symbols, so-called \"ticker\"."
+	echo "  profit \t  statement of total profit from closed positions."
+	echo "  pos \t\t  list of values of currently held positions sorted in descending order by value."
+	echo "  last-price \t  list of the last known price for each ticker."
+	echo "  hist-ord \t  histogram report of the number of transactions according to the ticker."
+	echo "  graph-pos \t  list of values of held positions according to the ticker."
+	echo "\nFilter:"
+	echo "  -a DATETIME \t  only records after this date are considered (without this date)."
+	echo "  -b DATETIME \t  only records before this date (without this date) are considered."
+	echo "  -t TICKER \t  only entries corresponding to a given ticker are considered."
+	echo "  -w WIDTH \t  for a list of graphs, sets their width."
+	echo "\nFor help use -h or --help."
+}
+
+# Vypis chyboveho hlaseni.
+echo_err() {
+	echo "Error: $@" 1>&2;
+}
+
+# -------------------- Zpracovani argumentu --------------------#
+
+arguments() {
+	while [ "$#" -gt 0 ]
+	do
+	arg="$1"
+
+	case "$arg" in
+		-h|--help)					
+			help=true
+			break				
+			;;
+		-a)						
+			# Prirazeni, pokud je nove datum pozdeji nez datum datetime_after.				
+			if expr "$datetime_after" "<" "$2" >/dev/null; then
+				datetime_after="$2"					
+			fi
+			
+			shift # Preskoceni -a.
+			shift # Preskoceni argumentu DATETIME.
+			;;	
+		-b)		
+			if [ "$datetime_before" = "" ]; then
+				datetime_before="$2"
+			else
+				# Prirazeni, pokud je nove datum drive nez datum datetime_before.		
+				if expr "$2" "<" "$datetime_before" >/dev/null; then
+					datetime_before="$2"
+				fi
+			fi
+			
+			shift # Preskoceni -b.
+			shift # Preskoceni argumentu DATETIME.
+			;;
+		-t)									
+			ticker="$ticker $2 "					
+			shift # Preskoceni -t.
+			shift # Preskoceni argumentu TICKER.
+			;;
+		-w)
+			if ! [ "$2" -eq "$2" ] 2> /dev/null; then
+				err_msg="Non-integer width value"				
+				shift; shift
+				continue
+			fi
+
+			if [ "$width" -ne 0 ]; then
+				err_msg="Multiple width occurence"				
+				shift; shift
+				continue
+			fi
+
+			if [ "$2" -lt 1 ]; then
+				err_msg="Negative or zero width value"				
+				shift; shift
+				continue
+			fi			
+						
+			width="$2"
+			shift # Preskoceni -w.
+			shift # Preskoceni argumentu WIDTH.
+			;;
+		list-tick|profit|pos|last-price|hist-ord|graph-pos)			
+			if [ "$argument" != "" ]; then
+				err_msg="Multiple command entries"				
+				shift						
+				continue
+			fi
+
+			argument="$1"
+			# Nahrazeni znaku '-' za znak '_' z duvodu pravidla pro pojmenovani funkce.
+			argument=`echo $argument | sed -E 's/-/_/g'`
+			shift
+			;;											
+		*.log)
+			if ! [ -f "$1" ]; then
+    			err_msg="File $1 does not exist"
+				shift
+				continue
+			fi
+
+			if ! [ -r "$1" ]; then
+    			err_msg="File $1 is not readable"
+				shift
+				continue
+			fi
+
+			if [ "$command" = "" ]; then
+				command="(cat $1"					
+			else
+				command="$command; cat $1"
+			fi						
+				
+			shift							
+			;;
+		*.log.gz)
+			if ! [ -f "$1" ]; then
+    			err_msg="File $1 does not exist"
+				shift
+				continue
+			fi
+
+			if ! [ -r "$1" ]; then
+    			err_msg="File $1 is not readable"
+				shift
+				continue
+			fi
+
+			if [ "$command" = "" ]; then
+				command="(gzip -d -c $1"					
+			else
+				command="$command; gzip -d -c $1"
+			fi					
+								
+			shift
+			;; 
+		*)
+			err_msg="Incorrect argument"			
+			shift
+			;;					
+	esac
+	done
+
+	if [ "$command" != "" ]; then
+		command="$command)"									
+	fi	
+}
+
+# -------------------------- Filtry ----------------------------#
+
+filter () {			
+	# Zaznamy po datu datetime_after.		
+	if [ "$datetime_after" != "" ]; then			
+		command="$command | awk -F ';' -v date=\"$datetime_after\" '$"1">date { print }'"														
+	fi
+
+	# Zaznamy pred datem datetime_before.		
+	if [ "$datetime_before" != "" ]; then
+	    command="$command | awk -F ';' -v date=\"$datetime_before\" '$"1"<date { print }'"														
+	fi
+
+	# Zaznamy odpovidajici danemu tickeru nebo jednoho z mnoziny tickeru.
+	# Tickery jsou v promenne ticker oddelene mezerami.
+	if [ "$ticker" != "" ]; then							 				
+		# Awk vybere radky, ktere maji ve druhem sloupci hodnotu
+		# shodnou s hodnotou ulozenou v promenne ticker.				
+		command="$command | awk -F ';' -v ticker=\"$ticker\" '
+		                        {
+		                            if ( ticker ~ \" \"$"2"\" \" ){ print }
+		                        }'"					
+	fi
+}
+
+# ----------------- Funkce pro zarovnani vpravo ----------------#
+
+align_right () {	
+	# Do treti sloupce je vlozena delka retezce ve druhem sloupci.
+	command="$command | awk -F ':' '{print $"1"\":\"$"2"\":\"length($"2")}'"
+
+	# Serazeni podle tretiho sloupce od nejvetsi hodnoty delky.
+	command="$command | sort -g -r -k 3,3 -t ':'"
+	
+	# Vlozeni prislusneho poctu mezer.
+	command="$command | awk -F ':' '
+	                        NR==1{ 
+	                            max=length($"2") 
+	                        }
+	                        {
+	                            printf $"1"\":\";
+	                            spaces=max-length($"2")+1;
+	                            for(i=0; i<spaces; i++) {printf \" \"};
+	                            print $"2"
+	                        }'"		
+}
+
+# --------------------- Funkce pro prikazy ---------------------#
+
+list_tick () {	
+	command="$command | awk -F ';' '{ print $"2" }' | sort -u"							
+}
+
+profit () {	
+	command="$command | awk -F ';' '{a[$\"3\"] += ($\"4\" * $\"6\")}
+	                        END{ printf \"%.2f\n\", a[\"sell\"]-a[\"buy\"] }'"
+}
+
+pos () {	
+	command="$command | awk -F ';' '
+	                        {
+	                            a[$"2"] += ($\"3\" == \"buy\") ? $\"6\" : -$\"6\";
+	                            b[$"2"] = $\"4\"
+	                        }
+	                        END{for(i in a) {printf \"%-10s:%.2f\n\", i , a[i]*b[i]}}'"			
+
+	# Zarovnani vpravo pouze v pripadu, ze se nejedna 
+	# o vypocet pro sestaveni grafu (graph-pos).
+	if [ "$argument" != "graph_pos" ]; then
+		align_right	
+	fi
+	
+	command="$command | sort -g -r -k2,2 -t ':'"
+}
+
+last_price () {
+	command="$command | awk -F ';' '{a[$"2"] = $\"4\"}
+	                        END{ for (i in a) { printf \"%-10s:%.2f\n\", i , a[i] } }'"			
+	align_right
+	command="$command | sort"	
+}
+
+hist_ord () {	 	
+	# Sestaveni poctu transakci pro kazdy ticker.		
+	command="$command | awk -F ';' '{a[$"2"] += 1}
+	                        END{ for (i in a) { printf \"%-10s: %d\n\", i , a[i] } }' | 
+	                    sort -g -r -k2,2 -t ':'"
+
+	# Sestaveni histogramu dle poctu transakci.
+	command="$command | awk -F ':' -v width=\"$width\" '
+	                        NR==1{ 
+	                            (width == 0) ? divisor=1 : divisor=$"2"/width 
+	                        }
+	                        {
+	                            printf $"1"\":\";
+	                            count=int($"2"/divisor);
+	                            if( count != 0 ) printf \" \";
+	                            for(j=0;j<count;j++) {printf \"#\"}
+	                            printf \"\n\" 
+	                        }' | 
+	                    sort"		
+}
+
+graph_pos () {		
+	pos	
+	command="$command | sort -r -Vd -k2,2 -t ':'"	
+
+	# Sestaveni grafu dle vypisu hodnot aktualne drzenych pozic.
+	command="$command | awk -F ':' -v width=\"$width\" '
+	                        function abs(v) {return v < 0 ? -v : v} 
+	                        NR==1{ 
+	                            (width == 0) ? divisor=1000 : divisor=abs($"2"/width) 
+	                        }
+	                        {
+	                            printf $"1"\":\"; 
+	                            count=int($"2"/divisor); 
+	                            if( count != 0 ) printf \" \"; 
+	                            for(j=0;j<count;j++) {printf \"#\"} 
+	                            for(j=0;j>count;j--) {printf \"!\"} 
+	                            printf \"\n\" 
+	                        }' | 
+	                    sort -u"								
+}
+
+# --------------------------------------------------------------#
+
+arguments "$@" # Zpracovani argumentu.
+
+# Vypis napovedy.
+if [ "$help" = true ]; then
+	display_usage
+	exit 0
+fi
+
+# Pokud err_msg neni prazdny retezec, vyskytla se chyba pri behu scriptu.
+if [ "$err_msg" != "" ]; then
+	echo_err "$err_msg"
+	exit 1
+fi
+
+# Pokud nebyl zadan soubor log, je vstup ocekavan na stdin.
+if [ "$command" = "" ]; then
+	command="cat /dev/fd/0"
+fi
+
+filter # Nastaveni filtru do promenne command.
+$argument # Nastaveni prikazu do promenne command.
+
+# Vysledne provedeni jednotlivych prikazu ulozenych v promenne command.
+eval "$command"

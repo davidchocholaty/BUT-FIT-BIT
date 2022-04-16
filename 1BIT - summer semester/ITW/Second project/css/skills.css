@@ -1,0 +1,131 @@
+/*
+ * Soubor: skills.css
+ * Popis: Stylovy predpis pro sekci Skills webove stranky.
+ * Datum: 2021-04-02
+ * Autor: David Chocholaty <xchoch09@stud.fit.vutbr.cz>
+ * Verze: 1.0
+ * Projekt: Projekt 2, predmet ITW
+ */
+
+/*
+ * Nastaveni sekce hobbies na flex.
+ */  
+ .skills {               
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.1rem;            
+    padding: 16vh 6vw;        
+    background-color: #fff;  
+    text-align: center;      
+ } 
+ 
+ .skills > * {
+     padding: 20px 0;
+ }  
+ 
+ .skills h2 {
+     font-size: 1.8rem;    
+     padding: 25px 0;       
+ }  
+ 
+ .skills p {  
+     width: 100%;     
+ }
+
+ .code-langs {
+     text-align: center;
+     padding: 4vh 0;     
+ }
+
+ /*
+  * Nastaveni velikosti a barvy ikon.
+  */
+ .skills i {
+     font-size: 3rem;
+     padding: 1vh 2vw;
+     color: #9b9b9b;     
+     transition: 250ms;          
+ }
+
+ #skills-title {
+    animation-duration: 1.5s;        
+ }
+
+ /*
+  * Zmena velikosti pisma pro ikony font-mfizz.
+  */
+ #icon-4, #icon-5, #icon-9, #icon-12, #icon-13 {
+    font-size: 2.6rem;
+ }
+
+ /*
+  * Zpozdeni animace pro kazdou ikonu zvlast
+  * za ucelem efektu postupneho zobrazeni ikon.
+  */
+ #icon-1 {
+    animation-duration: 2s;        
+ }
+  
+ #icon-2 {
+    animation-duration: 2.25s;        
+ }
+
+ #icon-3 {
+    animation-duration: 2.5s;        
+ }
+
+ #icon-4 {    
+    animation-duration: 2.75s;        
+ }
+
+ #icon-5 {
+    animation-duration: 3s;        
+ }
+
+ #icon-6 {
+    animation-duration: 3.25s;        
+ }
+
+ #icon-7 {
+    animation-duration: 3.5s;        
+ }
+
+ #icon-8 {
+    animation-duration: 3.75s;        
+ }
+
+ #icon-9 {
+    animation-duration: 4s;        
+ }
+
+ #icon-10 {
+    animation-duration: 4.25s;        
+ }
+
+ #icon-11 {
+    animation-duration: 4.5s;        
+ }
+ 
+ #icon-12 {
+    animation-duration: 4.75s;        
+ }
+
+ #icon-13 {
+    animation-duration: 5s;        
+ }
+
+/*----------------- Skills pro desktop -----------------*/
+
+@media all and (min-width: 1140px) {    
+   /*
+    * Zmena velikosti okraju.
+    */
+   .skills {
+       padding: 16vh 18vw;
+   }      
+}
+
+/*------------- Konec souboru skills.css ------------*/
