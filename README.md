@@ -8,48 +8,48 @@ School projects of the Computer Science bachelor study program of Faculty of Inf
 
 ## 1BIT - winter semester
 
-Abrv | Title
---- | ---
-IDM | Discrete Mathematics
-IEL | Electronics for Information Technology
-ILG | Linear Algebra
-IUS | Introduction to Software Engineering
-ISM | Seminar of Mathematics
+Abrv | Title                                  | Type       |
+---- | -------------------------------------- | ---------- |
+IDM  | Discrete Mathematics                   | Compulsory |
+IEL  | Electronics for Information Technology | Compulsory |
+ILG  | Linear Algebra                         | Compulsory |
+IUS  | Introduction to Software Engineering   | Compulsory |
+ISM  | Seminar of Mathematics                 | Elective   |
 
 ## 1BIT - summer semester
 
-Abrv | Title
----  | ---
-IMA1 | Calculus 1
-INC  | Digital Systems Design
-IOS  | Operating Systems
-ISU  | Machine Level Programming
-BAN4 | New Headway Intermediate 2
-ITW  | Web Design
-IVS  | Practical Aspects of Software Desing
+Abrv | Title                                | Type                |
+---  | ------------------------------------ | ------------------- |
+IMA1 | Calculus 1                           | Compulsory          |
+INC  | Digital Systems Design               | Compulsory          |
+IOS  | Operating Systems                    | Compulsory          |
+ISU  | Machine Level Programming            | Compulsory          |
+BAN4 | New Headway Intermediate 2           | Compulsory-optional |
+ITW  | Web Design                           | Elective            |
+IVS  | Practical Aspects of Software Desing | Elective            |
 
 ## 2BIT - winter semester
 
-Abrv | Title
----  | ---
-IAL  | Algorithms
-IFJ  | Formal Languages and Compilers
-IMA2 | Calculus 2
-INP  | Design of Computer Systems
-IPT  | Probability and Statistics
-ISS  | Signals and Systems
-IP1  | Project Practice 1
-I1C  | Network Cabling and Routing (CCNA1+CCNA2)
+Abrv | Title                                     | Type       |
+---  | ----------------------------------------- | ---------- |
+IAL  | Algorithms                                | Compulsory |
+IFJ  | Formal Languages and Compilers            | Compulsory |
+IMA2 | Calculus 2                                | Compulsory |
+INP  | Design of Computer Systems                | Compulsory |
+IPT  | Probability and Statistics                | Compulsory |
+ISS  | Signals and Systems                       | Compulsory |
+IP1  | Project Practice 1                        | Elective   |
+I1C  | Network Cabling and Routing (CCNA1+CCNA2) | Elective   |
 
 ## 2BIT - summer semester
 
-Abrv | Title
----  | ---
-IDS  | Database Systems
-IPK  | Computer Communications and Networks
-IPP  | Principles of Programming Languages
-IZG  | Computer Graphics Principles
-IZU  | Fundamentals of Artificial Intelligence
-IJA  | Java Programming Language
-HKO  | Communication and Presentation Skills
-IP2  | Project Practice 2
+Abrv | Title                                   | Type                |
+---  | --------------------------------------- | ------------------- |
+IDS  | Database Systems                        | Compulsory          |
+IPK  | Computer Communications and Networks    | Compulsory          |
+IPP  | Principles of Programming Languages     | Compulsory          |
+IZG  | Computer Graphics Principles            | Compulsory          |
+IZU  | Fundamentals of Artificial Intelligence | Compulsory          |
+IJA  | Java Programming Language               | Compulsory-optional |
+HKO  | Communication and Presentation Skills   | Elective            |
+IP2  | Project Practice 2                      | Elective            |
