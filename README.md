@@ -40,3 +40,16 @@ IPT  | Probability and Statistics
 ISS  | Signals and Systems
 IP1  | Project Practice 1
 I1C  | Network Cabling and Routing (CCNA1+CCNA2)
+
+## 2BIT - summer semester
+
+Abrv | Title
+---  | ---
+IDS  | Database Systems
+IPK  | Computer Communications and Networks
+IPP  | Principles of Programming Languages
+IZG  | Computer Graphics Principles
+IZU  | Fundamentals of Artificial Intelligence
+IJA  | Java Programming Language
+HKO  | Communication and Presentation Skills
+IP2  | Project Practice 2
