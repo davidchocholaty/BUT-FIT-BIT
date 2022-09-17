@@ -1,9 +1,10 @@
 # 1BIT - winter semester
 
-Abrv | Title
---- | ---
-IDM | Discrete Mathematics
-IEL | Electronics for Information Technology
-ILG | Linear Algebra
-IUS | Introduction to Software Engineering
-ISM | Seminar of Mathematics
+| Abrv | Title                                  | Type       |
+|------|----------------------------------------|------------|
+| IDM  | Discrete Mathematics                   | Compulsory |
+| IEL  | Electronics for Information Technology | Compulsory |
+| ILG  | Linear Algebra                         | Compulsory |
+| IUS  | Introduction to Software Engineering   | Compulsory |
+| IZP  | Introduction to Programming Systems    | Compulsory |
+| ISM  | Seminar of Mathematics                 | Elective   |
