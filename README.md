@@ -54,3 +54,21 @@ School projects of the Computer Science bachelor study program of Faculty of Inf
 | IJA  | Java Programming Language               | Compulsory-optional |
 | HKO  | Communication and Presentation Skills   | Elective            |
 | IP2  | Project Practice 2                      | Elective            |
+
+## 3BIT - winter semester
+
+| Abrv | Title                                           | Type                |
+|------|-------------------------------------------------|---------------------|
+| IIS  | Information Systems                             | Compulsory          |
+| IMP  | Microprocessors and Embedded Systems            | Compulsory          |
+| IMS  | Modelling and Simulation                        | Compulsory          |
+| ISA  | Network Applications and Network Administration | Compulsory          |
+| ITT  | Term Thesis                                     | Compulsory          |
+| ITU  | User Interface Programming                      | Compulsory          |
+| HVR  | Leadership and Time Management                  | Elective            |
+
+## 3BIT - summer semester
+
+| Abrv | Title                                           | Type                |
+|------|-------------------------------------------------|---------------------|
+| IBT  | Bachelor's Thesis                               | Compulsory          |

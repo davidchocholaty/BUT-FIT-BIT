@@ -1,7 +1,6 @@
 # Computer Graphics Principles
 
-Labs
-https://github.com/davidchocholaty/BUT-FIT-IZG-labs
+Labs: https://github.com/davidchocholaty/BUT-FIT-IZG-labs
 
 Project
 - Points 20 / 20
