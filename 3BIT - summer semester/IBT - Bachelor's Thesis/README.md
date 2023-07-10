@@ -11,8 +11,7 @@ This thesis introduces and studies erasing systems as an alternative formal lang
 Keywords:
 erasing system, jumping finite automata, regulated grammars and automata, erasing operation, comparison with other language-defining formal devices, closure properties, application of formal models, open problems, new areas of research
 
-Thesis: https://www.vut.cz/en/students/final-thesis/detail/141140
-Source code and documentation: https://github.com/davidchocholaty/es-tools
-
-Excel@FIT 2023 poster: https://excel.fit.vutbr.cz/submissions/2023/049/49_poster.pdf
-Excel@FIT 2023 poster commentary: https://excel.fit.vutbr.cz/submissions/2023/049/49.pdf
+- Thesis: https://www.vut.cz/en/students/final-thesis/detail/141140
+- Source code and documentation: https://github.com/davidchocholaty/es-tools
+- Excel@FIT 2023 poster: https://excel.fit.vutbr.cz/submissions/2023/049/49_poster.pdf
+- Excel@FIT 2023 poster commentary: https://excel.fit.vutbr.cz/submissions/2023/049/49.pdf
